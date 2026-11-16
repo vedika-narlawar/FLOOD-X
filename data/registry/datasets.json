@@ -1,0 +1,1081 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-13T07:27:29+00:00",
+  "datasets": {
+    "boundaries_pmc_wards_2022": {
+      "id": "boundaries_pmc_wards_2022",
+      "name": "Pune electoral wards (2022)",
+      "publisher": "DataMeet Pune chapter (traced by SeerMaps from PMC ward PDFs)",
+      "source_url": "https://raw.githubusercontent.com/datameet/Municipal_Spatial_Data/master/Pune/pune-electoral-wards_2022.geojson",
+      "licence": "CC BY-SA 2.5 India (dataset); MIT for answerquest/pune-2022-wards mirror",
+      "attribution": "DataMeet Trust / Nikhil VJ / SeerMaps; source PMC final prabhag rachna 2022",
+      "version": "2022 (git commit recorded at download)",
+      "date_range": "2022",
+      "geographic_coverage": "Pune Municipal Corporation area, 58 wards",
+      "spatial_resolution": "vector (hand-traced from PDF maps)",
+      "temporal_resolution": "static",
+      "format": "GeoJSON",
+      "units": "EPSG:4326",
+      "download_method": "HTTP GET (raw GitHub)",
+      "status": "ready_for_analysis",
+      "retrieval": {
+        "state": "ok",
+        "bytes": 256530,
+        "skipped_existing": true
+      },
+      "parse": {
+        "state": "ok",
+        "crs": "EPSG:4326",
+        "features": 58
+      },
+      "pune_overlap": {
+        "state": "ok",
+        "bounds_wgs84": [
+          73.73193,
+          18.38539,
+          74.01838,
+          18.62185
+        ]
+      },
+      "quality_checks": [
+        {
+          "check": "has_crs",
+          "passed": true,
+          "detail": "EPSG:4326"
+        },
+        {
+          "check": "min_feature_count",
+          "passed": true,
+          "detail": "58 features (min 58)"
+        },
+        {
+          "check": "no_empty_geometry",
+          "passed": true,
+          "detail": "0"
+        },
+        {
+          "check": "no_null_geometry",
+          "passed": true,
+          "detail": "0"
+        },
+        {
+          "check": "valid_geometry",
+          "passed": true,
+          "detail": "0 invalid"
+        },
+        {
+          "check": "geometry_types",
+          "passed": true,
+          "detail": "['MultiPolygon']"
+        },
+        {
+          "check": "no_duplicate_geometries",
+          "passed": true,
+          "detail": "0 duplicates"
+        },
+        {
+          "check": "within_pune_window",
+          "passed": true,
+          "detail": "[73.7319, 18.3854, 74.0184, 18.6218]"
+        },
+        {
+          "check": "geometries_repaired",
+          "passed": true,
+          "detail": "0"
+        }
+      ],
+      "intended_use": "Study-area definition, zonal aggregation unit, ward-level reporting",
+      "known_limitations": [
+        "Manually traced from PDF maps - not an official survey-grade boundary",
+        "Electoral wards, not hydrological or drainage units",
+        "Post-2022 PMC boundary changes not reflected"
+      ],
+      "blocker": null,
+      "local_path": "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\raw\\boundaries\\pune-electoral-wards_2022.geojson",
+      "sha256": "0142d5477e5a18a7b2e03a1ef0184c0b2df1a41c728b2d2f4cb2a930573c6bb2",
+      "retrieved_at": "2026-10-13T07:27:54+00:00",
+      "last_verified": "2026-10-14T06:36:30+00:00",
+      "processing_history": [
+        {
+          "at": "2026-10-13T07:27:54+00:00",
+          "step": "downloaded 256530 bytes sha256=0142d5477e5a"
+        },
+        {
+          "at": "2026-10-13T07:27:54+00:00",
+          "step": "parsed with geopandas"
+        },
+        {
+          "at": "2026-10-13T07:27:54+00:00",
+          "step": "validated (CRS->4326, geometry repair, feature count, Pune bbox)"
+        },
+        {
+          "at": "2026-10-14T06:21:23+00:00",
+          "step": "downloaded 256530 bytes sha256=0142d5477e5a"
+        },
+        {
+          "at": "2026-10-14T06:21:23+00:00",
+          "step": "parsed with geopandas"
+        },
+        {
+          "at": "2026-10-14T06:21:23+00:00",
+          "step": "validated (CRS->4326, geometry repair, feature count, Pune bbox)"
+        },
+        {
+          "at": "2026-10-14T06:25:41+00:00",
+          "step": "downloaded 256530 bytes sha256=0142d5477e5a"
+        },
+        {
+          "at": "2026-10-14T06:25:41+00:00",
+          "step": "parsed with geopandas"
+        },
+        {
+          "at": "2026-10-14T06:25:41+00:00",
+          "step": "validated (CRS->4326, geometry repair, feature count, Pune bbox)"
+        },
+        {
+          "at": "2026-10-14T06:36:30+00:00",
+          "step": "downloaded 256530 bytes sha256=0142d5477e5a"
+        },
+        {
+          "at": "2026-10-14T06:36:30+00:00",
+          "step": "parsed with geopandas"
+        },
+        {
+          "at": "2026-10-14T06:36:30+00:00",
+          "step": "validated (CRS->4326, geometry repair, feature count, Pune bbox)"
+        }
+      ],
+      "licence_source": "documented by publisher; not machine-verified"
+    },
+    "boundaries_pmc_admin_wards_2017": {
+      "id": "boundaries_pmc_admin_wards_2017",
+      "name": "Pune administrative wards (2017)",
+      "publisher": "DataMeet Pune chapter",
+      "source_url": "https://raw.githubusercontent.com/datameet/Municipal_Spatial_Data/master/Pune/pune-admin-wards_2017.geojson",
+      "licence": "CC BY-SA 2.5 India",
+      "attribution": "DataMeet Trust",
+      "version": "2017",
+      "date_range": "2017",
+      "geographic_coverage": "Pune Municipal Corporation, 15 admin wards",
+      "spatial_resolution": "vector",
+      "temporal_resolution": "static",
+      "format": "GeoJSON",
+      "units": "EPSG:4326",
+      "download_method": "HTTP GET (raw GitHub)",
+      "status": "ready_for_analysis",
+      "retrieval": {
+        "state": "ok",
+        "bytes": 297307,
+        "skipped_existing": true
+      },
+      "parse": {
+        "state": "ok",
+        "crs": "EPSG:4326",
+        "features": 15
+      },
+      "pune_overlap": {
+        "state": "ok",
+        "bounds_wgs84": [
+          73.75156,
+          18.42883,
+          73.96296,
+          18.62162
+        ]
+      },
+      "quality_checks": [
+        {
+          "check": "has_crs",
+          "passed": true,
+          "detail": "EPSG:4326"
+        },
+        {
+          "check": "min_feature_count",
+          "passed": true,
+          "detail": "15 features (min 15)"
+        },
+        {
+          "check": "no_empty_geometry",
+          "passed": true,
+          "detail": "0"
+        },
+        {
+          "check": "no_null_geometry",
+          "passed": true,
+          "detail": "0"
+        },
+        {
+          "check": "valid_geometry",
+          "passed": true,
+          "detail": "0 invalid"
+        },
+        {
+          "check": "geometry_types",
+          "passed": true,
+          "detail": "['Polygon']"
+        },
+        {
+          "check": "no_duplicate_geometries",
+          "passed": true,
+          "detail": "0 duplicates"
+        },
+        {
+          "check": "within_pune_window",
+          "passed": true,
+          "detail": "[73.7516, 18.4288, 73.963, 18.6216]"
+        },
+        {
+          "check": "geometries_repaired",
+          "passed": true,
+          "detail": "0"
+        }
+      ],
+      "intended_use": "Context overlay (superseded by 2022 wards for analysis)",
+      "known_limitations": [
+        "2017 vintage; does not represent current municipal wards"
+      ],
+      "blocker": null,
+      "local_path": "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\raw\\boundaries\\pune-admin-wards_2017.geojson",
+      "sha256": "8988021aa25b9c2655cb406c2e31d18d5da55725542bc47c29e6cce1c40fcd26",
+      "retrieved_at": "2026-10-13T07:27:55+00:00",
+      "last_verified": "2026-10-14T06:36:30+00:00",
+      "processing_history": [
+        {
+          "at": "2026-10-13T07:27:55+00:00",
+          "step": "downloaded 297307 bytes sha256=8988021aa25b"
+        },
+        {
+          "at": "2026-10-13T07:27:55+00:00",
+          "step": "parsed with geopandas"
+        },
+        {
+          "at": "2026-10-13T07:27:55+00:00",
+          "step": "validated (CRS->4326, geometry repair, feature count, Pune bbox)"
+        },
+        {
+          "at": "2026-10-14T06:21:23+00:00",
+          "step": "downloaded 297307 bytes sha256=8988021aa25b"
+        },
+        {
+          "at": "2026-10-14T06:21:23+00:00",
+          "step": "parsed with geopandas"
+        },
+        {
+          "at": "2026-10-14T06:21:23+00:00",
+          "step": "validated (CRS->4326, geometry repair, feature count, Pune bbox)"
+        },
+        {
+          "at": "2026-10-14T06:25:41+00:00",
+          "step": "downloaded 297307 bytes sha256=8988021aa25b"
+        },
+        {
+          "at": "2026-10-14T06:25:41+00:00",
+          "step": "parsed with geopandas"
+        },
+        {
+          "at": "2026-10-14T06:25:41+00:00",
+          "step": "validated (CRS->4326, geometry repair, feature count, Pune bbox)"
+        },
+        {
+          "at": "2026-10-14T06:36:30+00:00",
+          "step": "downloaded 297307 bytes sha256=8988021aa25b"
+        },
+        {
+          "at": "2026-10-14T06:36:30+00:00",
+          "step": "parsed with geopandas"
+        },
+        {
+          "at": "2026-10-14T06:36:30+00:00",
+          "step": "validated (CRS->4326, geometry repair, feature count, Pune bbox)"
+        }
+      ],
+      "licence_source": "documented by publisher; not machine-verified"
+    },
+    "dem_cop_glo30": {
+      "id": "dem_cop_glo30",
+      "name": "Copernicus DEM GLO-30 (DSM)",
+      "publisher": "ESA / Airbus via AWS Open Data",
+      "source_url": "https://copernicus-dem-30m.s3.amazonaws.com/",
+      "licence": "Copernicus DEM licence (free, attribution required)",
+      "attribution": "Copernicus DEM GLO-30 (c) DLR e.V. 2010-2014 and (c) Airbus Defence and Space GmbH 2014-2018, provided under COPERNICUS by the EU and ESA",
+      "version": "COG 2021_1",
+      "date_range": "2010-2015 acquisition",
+      "geographic_coverage": "Global, 1x1 degree tiles N18E073 and N18E074 needed for Pune",
+      "spatial_resolution": "30 m (1 arc-second)",
+      "temporal_resolution": "static",
+      "format": "Cloud-Optimised GeoTIFF",
+      "units": "metres above EGM2008 geoid",
+      "download_method": "HTTP GET tiles",
+      "status": "parsed",
+      "retrieval": {
+        "state": "ok",
+        "tiles": [
+          "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\raw\\dem\\Copernicus_DSM_COG_10_N18_00_E073_00_DEM.tif",
+          "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\raw\\dem\\Copernicus_DSM_COG_10_N18_00_E074_00_DEM.tif"
+        ]
+      },
+      "parse": {
+        "state": "ok",
+        "tiles": 2
+      },
+      "pune_overlap": {
+        "state": "not_attempted"
+      },
+      "quality_checks": [],
+      "intended_use": "Elevation, slope, relative topographic position",
+      "known_limitations": [
+        "Digital SURFACE model: includes buildings and vegetation canopy, not bare earth",
+        "30 m is coarse for street-level drainage"
+      ],
+      "blocker": null,
+      "local_path": "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\raw\\dem",
+      "sha256": null,
+      "retrieved_at": null,
+      "last_verified": "2026-10-20T12:20:26+00:00",
+      "processing_history": [
+        {
+          "at": "2026-10-13T07:27:30+00:00",
+          "step": "access probe FAILED: DNS resolution failed: [Errno -2] Name or service not known"
+        },
+        {
+          "at": "2026-10-13T07:27:54+00:00",
+          "step": "access probe FAILED: DNS resolution failed: [Errno -2] Name or service not known"
+        },
+        {
+          "at": "2026-10-14T06:25:36+00:00",
+          "step": "access probe OK (HTTP 200)"
+        },
+        {
+          "at": "2026-10-14T06:36:22+00:00",
+          "step": "access probe OK (HTTP 200)"
+        },
+        {
+          "at": "2026-10-16T13:43:04+00:00",
+          "step": "access probe OK (HTTP 200)"
+        },
+        {
+          "at": "2026-10-20T12:20:26+00:00",
+          "step": "downloaded and opened 2 tiles; mosaic coverage validated in terrain stage"
+        }
+      ],
+      "licence_source": "documented by publisher; not machine-verified"
+    },
+    "landcover_worldcover_2021": {
+      "id": "landcover_worldcover_2021",
+      "name": "ESA WorldCover 2021 v200",
+      "publisher": "ESA WorldCover consortium",
+      "source_url": "https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N18E072_Map.tif",
+      "licence": "CC BY 4.0",
+      "attribution": "(c) ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium",
+      "version": "v200",
+      "date_range": "2021",
+      "geographic_coverage": "Global; 3x3 degree tile N18E072 covers Pune",
+      "spatial_resolution": "10 m",
+      "temporal_resolution": "static (annual)",
+      "format": "GeoTIFF (COG)",
+      "units": "class codes (10 tree, 20 shrub, 30 grass, 40 crop, 50 built-up, 60 bare, 70 snow, 80 water, 90 wetland, 95 mangrove, 100 moss)",
+      "download_method": "HTTP GET tile",
+      "status": "ready_for_analysis",
+      "retrieval": {
+        "state": "ok",
+        "bytes": 125766199
+      },
+      "parse": {
+        "state": "ok",
+        "crs": "EPSG:4326",
+        "width": 36000,
+        "height": 36000,
+        "count": 1,
+        "dtype": "uint8",
+        "nodata": 0.0,
+        "res": [
+          8.333333333333333e-05,
+          8.333333333333333e-05
+        ],
+        "bounds": [
+          72.0,
+          18.0,
+          75.0,
+          21.0
+        ],
+        "units": null,
+        "valid_fraction_sampled": 1.0,
+        "valid_pixels_sampled_in_study_area": 936402,
+        "study_area_pixels_sampled": 936402,
+        "min": 10.0,
+        "max": 80.0
+      },
+      "pune_overlap": {
+        "state": "ok",
+        "detail": "raster [72.0, 18.0, 75.0, 21.0] vs study [73.7104, 18.3854, 74.0184, 18.7211]"
+      },
+      "quality_checks": [
+        {
+          "check": "readable",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "has_crs",
+          "passed": true,
+          "detail": "EPSG:4326"
+        },
+        {
+          "check": "covers_study_area",
+          "passed": true,
+          "detail": "raster [72.0, 18.0, 75.0, 21.0] vs study [73.7104, 18.3854, 74.0184, 18.7211]"
+        },
+        {
+          "check": "sufficient_valid_pixels",
+          "passed": true,
+          "detail": "1.000 valid within study area (936402/936402 sampled pixels)"
+        },
+        {
+          "check": "values_in_range",
+          "passed": true,
+          "detail": "[10.0, 80.0] vs (0, 100)"
+        }
+      ],
+      "intended_use": "Built-up and vegetated land-cover shares",
+      "known_limitations": [
+        "Land-cover class, NOT measured impervious-surface fraction",
+        "Class accuracy varies in dense urban/peri-urban mix"
+      ],
+      "blocker": null,
+      "local_path": "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\raw\\landcover\\ESA_WorldCover_10m_2021_v200_N18E072_Map.tif",
+      "sha256": "2d28650e0eba865efb08656e45b75a269eaf535f9260a245ae5aad72ee5a5c63",
+      "retrieved_at": null,
+      "last_verified": "2026-10-20T12:27:22+00:00",
+      "processing_history": [
+        {
+          "at": "2026-10-13T07:27:30+00:00",
+          "step": "access probe FAILED: DNS resolution failed: [Errno -2] Name or service not known"
+        },
+        {
+          "at": "2026-10-13T07:27:54+00:00",
+          "step": "access probe FAILED: DNS resolution failed: [Errno -2] Name or service not known"
+        },
+        {
+          "at": "2026-10-14T06:25:36+00:00",
+          "step": "access probe OK (HTTP 200)"
+        },
+        {
+          "at": "2026-10-14T06:36:23+00:00",
+          "step": "access probe OK (HTTP 200)"
+        },
+        {
+          "at": "2026-10-16T13:43:05+00:00",
+          "step": "access probe OK (HTTP 200)"
+        },
+        {
+          "at": "2026-10-20T12:20:55+00:00",
+          "step": "downloaded sha256=2d28650e0eba"
+        },
+        {
+          "at": "2026-10-20T12:20:55+00:00",
+          "step": "raster validation executed"
+        },
+        {
+          "at": "2026-10-20T12:27:22+00:00",
+          "step": "downloaded sha256=2d28650e0eba"
+        },
+        {
+          "at": "2026-10-20T12:27:22+00:00",
+          "step": "raster validation executed"
+        }
+      ],
+      "licence_source": "documented by publisher; not machine-verified"
+    },
+    "population_worldpop_2020": {
+      "id": "population_worldpop_2020",
+      "name": "WorldPop India 1 km/100 m population 2020",
+      "publisher": "WorldPop, University of Southampton",
+      "source_url": "https://data.worldpop.org/GIS/Population/Global_2000_2020/2020/IND/ind_ppp_2020.tif",
+      "licence": "CC BY 4.0",
+      "attribution": "WorldPop (www.worldpop.org)",
+      "version": "2020 (UN-adjusted? to be verified from file metadata)",
+      "date_range": "2020",
+      "geographic_coverage": "India national raster",
+      "spatial_resolution": "~100 m (3 arc-second)",
+      "temporal_resolution": "static (annual)",
+      "format": "GeoTIFF",
+      "units": "people per pixel (to be verified from metadata)",
+      "download_method": "HTTP range read / full download",
+      "status": "ready_for_analysis",
+      "retrieval": {
+        "state": "ok",
+        "bytes": 456464
+      },
+      "parse": {
+        "state": "ok",
+        "crs": "EPSG:4326",
+        "width": 370,
+        "height": 404,
+        "count": 1,
+        "dtype": "float32",
+        "nodata": -99999.0,
+        "res": [
+          0.000832310810810791,
+          0.0008323108108107926
+        ],
+        "bounds": [
+          73.710425,
+          18.38513421621622,
+          74.01838,
+          18.72138778378378
+        ],
+        "units": null,
+        "valid_fraction_sampled": 0.9827,
+        "valid_pixels_sampled_in_study_area": 83001,
+        "study_area_pixels_sampled": 84461,
+        "min": 1.0545194149017334,
+        "max": 512.2597045898438
+      },
+      "pune_overlap": {
+        "state": "ok",
+        "detail": "raster [73.7104, 18.3851, 74.0184, 18.7214] vs study [73.7104, 18.3854, 74.0184, 18.7211]"
+      },
+      "quality_checks": [
+        {
+          "check": "readable",
+          "passed": true,
+          "detail": ""
+        },
+        {
+          "check": "has_crs",
+          "passed": true,
+          "detail": "EPSG:4326"
+        },
+        {
+          "check": "covers_study_area",
+          "passed": true,
+          "detail": "raster [73.7104, 18.3851, 74.0184, 18.7214] vs study [73.7104, 18.3854, 74.0184, 18.7211]"
+        },
+        {
+          "check": "sufficient_valid_pixels",
+          "passed": true,
+          "detail": "0.983 valid within study area (83001/84461 sampled pixels)"
+        },
+        {
+          "check": "values_in_range",
+          "passed": true,
+          "detail": "[1.0545194149017334, 512.2597045898438] vs (0, 1000000.0)"
+        }
+      ],
+      "intended_use": "Population exposure per susceptibility zone",
+      "known_limitations": [
+        "Modelled disaggregation, not a census count",
+        "Year 2020 - older than current population"
+      ],
+      "blocker": null,
+      "local_path": "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\raw\\population\\worldpop_ind_2020_pune_clip.tif",
+      "sha256": "b7770d768017c31187b97d63ce9c30b70ede4ad695b6f2c16daf0d69ae07b375",
+      "retrieved_at": null,
+      "last_verified": "2026-10-20T12:28:42+00:00",
+      "processing_history": [
+        {
+          "at": "2026-10-13T07:27:30+00:00",
+          "step": "access probe FAILED: DNS resolution failed: [Errno -2] Name or service not known"
+        },
+        {
+          "at": "2026-10-13T07:27:54+00:00",
+          "step": "access probe FAILED: DNS resolution failed: [Errno -2] Name or service not known"
+        },
+        {
+          "at": "2026-10-14T06:25:37+00:00",
+          "step": "access probe OK (HTTP 200)"
+        },
+        {
+          "at": "2026-10-14T06:36:25+00:00",
+          "step": "access probe OK (HTTP 200)"
+        },
+        {
+          "at": "2026-10-16T13:43:06+00:00",
+          "step": "access probe OK (HTTP 200)"
+        },
+        {
+          "at": "2026-10-20T12:28:42+00:00",
+          "step": "downloaded sha256=b7770d768017"
+        },
+        {
+          "at": "2026-10-20T12:28:42+00:00",
+          "step": "raster validation executed"
+        }
+      ],
+      "licence_source": "documented by publisher; not machine-verified"
+    },
+    "osm_pune": {
+      "id": "osm_pune",
+      "name": "OpenStreetMap infrastructure extract (Pune bbox)",
+      "publisher": "OpenStreetMap contributors via Overpass API",
+      "source_url": "https://overpass-api.de/api/interpreter",
+      "licence": "ODbL 1.0",
+      "attribution": "(c) OpenStreetMap contributors",
+      "version": "live query; timestamp recorded",
+      "date_range": "retrieval date",
+      "geographic_coverage": "Pune study-area bbox",
+      "spatial_resolution": "vector",
+      "temporal_resolution": "continuously edited",
+      "format": "Overpass JSON -> GeoPackage",
+      "units": "n/a",
+      "download_method": "HTTP POST Overpass QL",
+      "status": "quality_checked",
+      "retrieval": {
+        "state": "ok",
+        "retrieved_at": "2026-10-20T12:30:04+00:00"
+      },
+      "parse": {
+        "state": "ok",
+        "feature_counts": {
+          "waterways": 238,
+          "roads": 58519,
+          "facilities": 1710
+        }
+      },
+      "pune_overlap": {
+        "state": "not_attempted"
+      },
+      "quality_checks": [
+        {
+          "check": "waterways_nonempty",
+          "passed": true,
+          "detail": "238"
+        },
+        {
+          "check": "roads_nonempty",
+          "passed": true,
+          "detail": "58519"
+        },
+        {
+          "check": "facilities_nonempty",
+          "passed": true,
+          "detail": "1710"
+        }
+      ],
+      "intended_use": "Waterways, roads, hospitals, clinics, schools, fire/police stations",
+      "known_limitations": [
+        "Completeness varies; counts are NOT a verified inventory",
+        "Waterway mapping omits many culverted/nallah channels"
+      ],
+      "blocker": "Remote source not reachable at 2026-10-16T13:43:06+00:00: HTTP 502",
+      "local_path": null,
+      "sha256": null,
+      "retrieved_at": "2026-10-20T12:30:04+00:00",
+      "last_verified": "2026-10-20T12:30:04+00:00",
+      "processing_history": [
+        {
+          "at": "2026-10-13T07:27:30+00:00",
+          "step": "access probe FAILED: DNS resolution failed: [Errno -2] Name or service not known"
+        },
+        {
+          "at": "2026-10-13T07:27:54+00:00",
+          "step": "access probe FAILED: DNS resolution failed: [Errno -2] Name or service not known"
+        },
+        {
+          "at": "2026-10-14T06:25:39+00:00",
+          "step": "access probe OK (HTTP 200)"
+        },
+        {
+          "at": "2026-10-14T06:36:26+00:00",
+          "step": "access probe OK (HTTP 200)"
+        },
+        {
+          "at": "2026-10-16T13:43:07+00:00",
+          "step": "access probe FAILED: HTTP 502; existing processing status preserved (blocked_in_environment)"
+        },
+        {
+          "at": "2026-10-20T12:30:04+00:00",
+          "step": "Overpass queries executed; counts are NOT a completeness claim"
+        }
+      ],
+      "licence_source": "documented by publisher; not machine-verified"
+    },
+    "rainfall_openmeteo_archive": {
+      "id": "rainfall_openmeteo_archive",
+      "name": "Open-Meteo Historical Weather API (reanalysis, hourly precipitation)",
+      "publisher": "Open-Meteo.com",
+      "source_url": "https://archive-api.open-meteo.com/v1/archive",
+      "licence": "CC BY 4.0 (data); API free for non-commercial use",
+      "attribution": "Weather data by Open-Meteo.com",
+      "version": "API v1",
+      "date_range": "1940-present",
+      "geographic_coverage": "Global grid (~0.25 deg / 9-25 km depending on model)",
+      "spatial_resolution": "grid cell",
+      "temporal_resolution": "hourly",
+      "format": "JSON",
+      "units": "mm",
+      "download_method": "HTTP GET",
+      "status": "quality_checked",
+      "retrieval": {
+        "state": "ok",
+        "start": "2026-10-13",
+        "end": "2026-11-11",
+        "lat": 18.539,
+        "lon": 73.857
+      },
+      "parse": {
+        "state": "ok",
+        "rows": 720,
+        "missing_rows": 0,
+        "units": "mm",
+        "timezone": "Asia/Kolkata"
+      },
+      "pune_overlap": {
+        "state": "not_attempted"
+      },
+      "quality_checks": [],
+      "intended_use": "Rainfall context and rolling accumulations at the study-area centroid",
+      "known_limitations": [
+        "Gridded reanalysis - NOT a rain-gauge measurement",
+        "Grid scale smooths convective extremes typical of Pune cloudbursts"
+      ],
+      "blocker": null,
+      "local_path": null,
+      "sha256": null,
+      "retrieved_at": "2026-11-15T20:47:56+00:00",
+      "last_verified": "2026-11-15T20:47:57+00:00",
+      "processing_history": [
+        {
+          "at": "2026-10-13T07:27:30+00:00",
+          "step": "access probe FAILED: DNS resolution failed: [Errno -2] Name or service not known"
+        },
+        {
+          "at": "2026-10-13T07:27:54+00:00",
+          "step": "access probe FAILED: DNS resolution failed: [Errno -2] Name or service not known"
+        },
+        {
+          "at": "2026-10-14T06:25:40+00:00",
+          "step": "access probe OK (HTTP 200)"
+        },
+        {
+          "at": "2026-10-14T06:36:28+00:00",
+          "step": "access probe OK (HTTP 200)"
+        },
+        {
+          "at": "2026-10-14T06:54:25+00:00",
+          "step": "hourly precipitation retrieved; rolling trailing accumulations computed"
+        },
+        {
+          "at": "2026-10-14T07:12:31+00:00",
+          "step": "hourly precipitation retrieved; rolling trailing accumulations computed"
+        },
+        {
+          "at": "2026-10-16T13:43:08+00:00",
+          "step": "access probe OK (HTTP 200)"
+        },
+        {
+          "at": "2026-11-15T20:47:57+00:00",
+          "step": "hourly precipitation retrieved; rolling trailing accumulations computed"
+        }
+      ],
+      "licence_source": "documented by publisher; not machine-verified"
+    },
+    "rainfall_openmeteo_forecast": {
+      "id": "rainfall_openmeteo_forecast",
+      "name": "Open-Meteo Forecast API (hourly precipitation)",
+      "publisher": "Open-Meteo.com",
+      "source_url": "https://api.open-meteo.com/v1/forecast",
+      "licence": "CC BY 4.0 (data); API free for non-commercial use",
+      "attribution": "Weather data by Open-Meteo.com",
+      "version": "API v1",
+      "date_range": "now to +16 days",
+      "geographic_coverage": "Global grid",
+      "spatial_resolution": "grid cell",
+      "temporal_resolution": "hourly",
+      "format": "JSON",
+      "units": "mm",
+      "download_method": "HTTP GET",
+      "status": "quality_checked",
+      "retrieval": {
+        "state": "ok"
+      },
+      "parse": {
+        "state": "ok",
+        "rows": 168,
+        "units": "mm"
+      },
+      "pune_overlap": {
+        "state": "not_attempted"
+      },
+      "quality_checks": [],
+      "intended_use": "Forecast rainfall context (kept separate from historical)",
+      "known_limitations": [
+        "Model forecast; not an official IMD warning"
+      ],
+      "blocker": null,
+      "local_path": null,
+      "sha256": null,
+      "retrieved_at": "2026-11-15T20:47:56+00:00",
+      "last_verified": "2026-11-15T20:47:58+00:00",
+      "processing_history": [
+        {
+          "at": "2026-10-13T07:27:30+00:00",
+          "step": "access probe FAILED: DNS resolution failed: [Errno -2] Name or service not known"
+        },
+        {
+          "at": "2026-10-13T07:27:54+00:00",
+          "step": "access probe FAILED: DNS resolution failed: [Errno -2] Name or service not known"
+        },
+        {
+          "at": "2026-10-14T06:25:41+00:00",
+          "step": "access probe OK (HTTP 200)"
+        },
+        {
+          "at": "2026-10-14T06:36:30+00:00",
+          "step": "access probe OK (HTTP 200)"
+        },
+        {
+          "at": "2026-10-14T06:54:28+00:00",
+          "step": "forecast retrieved (kept separate from historical)"
+        },
+        {
+          "at": "2026-10-14T07:12:34+00:00",
+          "step": "forecast retrieved (kept separate from historical)"
+        },
+        {
+          "at": "2026-10-16T13:43:09+00:00",
+          "step": "access probe OK (HTTP 200)"
+        },
+        {
+          "at": "2026-11-15T20:47:58+00:00",
+          "step": "forecast retrieved (kept separate from historical)"
+        }
+      ],
+      "licence_source": "documented by publisher; not machine-verified"
+    },
+    "rainfall_imd_gauge": {
+      "id": "rainfall_imd_gauge",
+      "name": "IMD rainfall observations (gauge/gridded)",
+      "publisher": "India Meteorological Department",
+      "source_url": "https://mausam.imd.gov.in/",
+      "licence": "Varies; IMD data policy applies",
+      "attribution": "India Meteorological Department",
+      "version": "n/a",
+      "date_range": "n/a",
+      "geographic_coverage": "India",
+      "spatial_resolution": "gauge / 0.25 deg grid",
+      "temporal_resolution": "daily",
+      "format": "web portal / request-based",
+      "units": "mm",
+      "download_method": "No verified programmatic endpoint identified",
+      "status": "discovered",
+      "retrieval": {
+        "state": "not_attempted"
+      },
+      "parse": {
+        "state": "not_attempted"
+      },
+      "pune_overlap": {
+        "state": "not_attempted"
+      },
+      "quality_checks": [],
+      "intended_use": "Authoritative gauge rainfall (future work)",
+      "known_limitations": [
+        "Programmatic access not verified; may require registration"
+      ],
+      "blocker": null,
+      "local_path": null,
+      "sha256": null,
+      "retrieved_at": null,
+      "last_verified": null,
+      "processing_history": [],
+      "licence_source": "documented by publisher; not machine-verified"
+    },
+    "flood_labels_pune": {
+      "id": "flood_labels_pune",
+      "name": "Georeferenced Pune flood observations / inundation footprints",
+      "publisher": "none identified",
+      "source_url": "n/a",
+      "licence": "n/a",
+      "attribution": "n/a",
+      "version": "n/a",
+      "date_range": "Sept 2019 event of interest",
+      "geographic_coverage": "Pune",
+      "spatial_resolution": "n/a",
+      "temporal_resolution": "event",
+      "format": "n/a",
+      "units": "n/a",
+      "download_method": "see audit",
+      "status": "unavailable",
+      "retrieval": {
+        "state": "not_attempted"
+      },
+      "parse": {
+        "state": "not_applicable"
+      },
+      "pune_overlap": {
+        "state": "not_attempted"
+      },
+      "quality_checks": [
+        {
+          "check": "search_executed",
+          "passed": true,
+          "detail": "1 web search ('Pune flood September 2019 inundation map Sentinel-1 dataset') on 2026-10-13; NOT exhaustive"
+        },
+        {
+          "check": "candidate_pune_news_report",
+          "passed": false,
+          "detail": "Down To Earth via PreventionWeb: 25 Sep 2019 inundation, 87.3 mm rainfall, >=17 deaths. Category 2 (report without precise spatial observations). Not usable as labels."
+        },
+        {
+          "check": "candidate_non_pune_sar_studies",
+          "passed": false,
+          "detail": "Kerala 2018/2019, Malda 2019, Bangladesh 2019 SAR flood maps surfaced. REJECTED: not Pune."
+        },
+        {
+          "check": "sentinel1_derived_water_mask",
+          "passed": false,
+          "detail": "Would require Copernicus Data Space/GEE access plus network egress (blocked here). Unconfirmed water masks would also not qualify as verified floodwater without validation."
+        }
+      ],
+      "intended_use": "Supervised labels (only if credible, georeferenced, downloadable)",
+      "known_limitations": [
+        "No credible downloadable georeferenced label set has been verified; see docs/dataset_audit.md"
+      ],
+      "blocker": "No georeferenced, downloadable, provenance-documented Pune flood observation or inundation-footprint dataset was found. Candidate evidence is limited to news reports (non-spatial).",
+      "local_path": null,
+      "sha256": null,
+      "retrieved_at": null,
+      "last_verified": "2026-10-13T07:29:25+00:00",
+      "processing_history": [
+        {
+          "at": "2026-10-13T07:29:25+00:00",
+          "step": "label search documented; supervised path not enabled"
+        }
+      ],
+      "licence_source": "documented by publisher; not machine-verified"
+    },
+    "boundaries_pcmc_wards": {
+      "id": "boundaries_pcmc_wards",
+      "name": "Pimpri-Chinchwad electoral wards (vintage undocumented)",
+      "publisher": "DataMeet Pune chapter (scraped from Shelter Associates spatial slum information)",
+      "source_url": "https://raw.githubusercontent.com/datameet/Municipal_Spatial_Data/master/PCMC/pcmc-electoral-wards.geojson",
+      "licence": "CC BY-SA 2.5 India",
+      "attribution": "DataMeet Trust; source: shelter-associates.org (scraped)",
+      "version": "undocumented",
+      "date_range": "undocumented",
+      "geographic_coverage": "Pimpri-Chinchwad Municipal Corporation, 66 wards",
+      "spatial_resolution": "vector",
+      "temporal_resolution": "static",
+      "format": "GeoJSON",
+      "units": "EPSG:4979 (3D geographic; treated as WGS84)",
+      "download_method": "HTTP GET (raw GitHub)",
+      "status": "ready_for_analysis",
+      "retrieval": {
+        "state": "ok",
+        "bytes": 168077,
+        "skipped_existing": true
+      },
+      "parse": {
+        "state": "ok",
+        "crs": "EPSG:4979",
+        "features": 66
+      },
+      "pune_overlap": {
+        "state": "ok",
+        "bounds_wgs84": [
+          73.71043,
+          18.56386,
+          73.93398,
+          18.72113
+        ]
+      },
+      "quality_checks": [
+        {
+          "check": "has_crs",
+          "passed": true,
+          "detail": "EPSG:4326"
+        },
+        {
+          "check": "min_feature_count",
+          "passed": true,
+          "detail": "66 features (min 66)"
+        },
+        {
+          "check": "no_empty_geometry",
+          "passed": true,
+          "detail": "0"
+        },
+        {
+          "check": "no_null_geometry",
+          "passed": true,
+          "detail": "0"
+        },
+        {
+          "check": "valid_geometry",
+          "passed": true,
+          "detail": "0 invalid"
+        },
+        {
+          "check": "geometry_types",
+          "passed": true,
+          "detail": "['Polygon']"
+        },
+        {
+          "check": "no_duplicate_geometries",
+          "passed": true,
+          "detail": "0 duplicates"
+        },
+        {
+          "check": "within_pune_window",
+          "passed": true,
+          "detail": "[73.7104, 18.5639, 73.934, 18.7211]"
+        },
+        {
+          "check": "geometries_repaired",
+          "passed": true,
+          "detail": "0"
+        }
+      ],
+      "intended_use": "Extends the study area to the wider Pune urban area (PMC + PCMC)",
+      "known_limitations": [
+        "Scraped from a third party; ward vintage not documented (likely older than the 2022 PMC file)",
+        "Electoral wards, not drainage units",
+        "Boundaries may not align exactly with PMC 2022 wards (possible gaps/overlaps)"
+      ],
+      "blocker": null,
+      "local_path": "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\raw\\boundaries\\pcmc-electoral-wards.geojson",
+      "sha256": "69980d37cc2302d975ff58687be8ef556d9044d5f760e32ea20e2dd15d925c4c",
+      "retrieved_at": "2026-10-14T06:21:23+00:00",
+      "last_verified": "2026-10-14T06:36:30+00:00",
+      "processing_history": [
+        {
+          "at": "2026-10-14T06:21:23+00:00",
+          "step": "downloaded 168077 bytes sha256=69980d37cc23"
+        },
+        {
+          "at": "2026-10-14T06:21:23+00:00",
+          "step": "parsed with geopandas"
+        },
+        {
+          "at": "2026-10-14T06:21:23+00:00",
+          "step": "validated (CRS->4326, geometry repair, feature count, Pune bbox)"
+        },
+        {
+          "at": "2026-10-14T06:25:41+00:00",
+          "step": "downloaded 168077 bytes sha256=69980d37cc23"
+        },
+        {
+          "at": "2026-10-14T06:25:42+00:00",
+          "step": "parsed with geopandas"
+        },
+        {
+          "at": "2026-10-14T06:25:42+00:00",
+          "step": "validated (CRS->4326, geometry repair, feature count, Pune bbox)"
+        },
+        {
+          "at": "2026-10-14T06:36:30+00:00",
+          "step": "downloaded 168077 bytes sha256=69980d37cc23"
+        },
+        {
+          "at": "2026-10-14T06:36:30+00:00",
+          "step": "parsed with geopandas"
+        },
+        {
+          "at": "2026-10-14T06:36:30+00:00",
+          "step": "validated (CRS->4326, geometry repair, feature count, Pune bbox)"
+        }
+      ],
+      "licence_source": "documented by publisher; not machine-verified"
+    }
+  }
+}

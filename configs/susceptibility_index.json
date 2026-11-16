@@ -1,0 +1,27 @@
+{
+  "name": "GIS-Based Flood Susceptibility Screening Index",
+  "version": "0.1.0",
+  "output": "relative screening score 0-100 (NOT a flood probability, hazard, depth or extent)",
+  "min_inputs": 3,
+  "normalization": {"method": "percentile_minmax", "lower_pct": 2, "upper_pct": 98,
+                    "note": "Scaled relative to the study area itself; scores are only comparable within one run."},
+  "categories": {"method": "quantile", "labels": ["Very low", "Low", "Moderate", "High", "Very high"],
+                 "note": "Equal-count quintiles: 'Very high' always contains ~20% of cells by construction. Categories are relative ranks, not absolute hazard classes."},
+  "variables": [
+    {"name": "rel_elev_mean_m", "label": "Local relative elevation", "direction": "decrease", "weight": 0.25,
+     "rationale": "Cells lower than their ~1 km surroundings collect runoff (topographic wetness proxy)."},
+    {"name": "elev_mean_m", "label": "Absolute elevation", "direction": "decrease", "weight": 0.15,
+     "rationale": "Lower parts of the catchment are generally more flood-prone than ridges and plateaus."},
+    {"name": "slope_mean_deg", "label": "Mean slope", "direction": "decrease", "weight": 0.20,
+     "rationale": "Flat terrain drains slowly and ponds water."},
+    {"name": "dist_waterway_m", "label": "Distance to mapped waterway", "direction": "decrease", "weight": 0.20,
+     "rationale": "Proximity to rivers/streams/canals raises riverine overflow susceptibility. OSM omits many culverted nallahs."},
+    {"name": "builtup_share", "label": "Built-up land-cover share", "direction": "increase", "weight": 0.20,
+     "rationale": "Built-up cover reduces infiltration (land-cover proxy only; not measured imperviousness)."}
+  ],
+  "excluded_variables": [
+    {"name": "flow_accumulation", "reason": "Requires hydrologically conditioned DEM (pit filling, burn-in of channels); not implemented. Not substituted."},
+    {"name": "rainfall", "reason": "Static screening index does not model rainfall-runoff; rainfall is shown as context only."}
+  ],
+  "weights_status": "Expert-judgement priors from flood-susceptibility literature; NOT calibrated against observations. See sensitivity analysis."
+}

@@ -1,0 +1,15 @@
+services:
+  app:
+    build: .
+    ports: ["8000:8000"]
+    env_file: [.env]
+    environment: { FLOODX_DATA_DIR: /data, FLOODX_ARTIFACTS_DIR: /artifacts, FLOODX_CORS_ORIGINS: "http://localhost:8000" }
+    volumes: [floodx_data:/data, floodx_artifacts:/artifacts]
+  pipeline:   # one-shot: docker compose run --rm pipeline  (needs open internet)
+    build: .
+    profiles: ["pipeline"]
+    command: ["python", "-m", "pipeline.run"]
+    env_file: [.env]
+    environment: { FLOODX_DATA_DIR: /data, FLOODX_ARTIFACTS_DIR: /artifacts }
+    volumes: [floodx_data:/data, floodx_artifacts:/artifacts]
+volumes: { floodx_data: {}, floodx_artifacts: {} }

@@ -1,0 +1,45 @@
+{
+  "computable": true,
+  "seed": 42,
+  "n_draws": 300,
+  "weight_perturbation": "each weight x U(0.5, 1.5)",
+  "n_cells": 2924,
+  "top_fraction": 0.1,
+  "spearman_vs_baseline": {
+    "mean": 0.9827802547386147,
+    "min": 0.9395198531475694,
+    "p5": 0.9542257659951867
+  },
+  "top_decile_jaccard": {
+    "mean": 0.7863921820322725,
+    "min": 0.5248041775456919,
+    "p5": 0.6088154269972452
+  },
+  "rank_width_p5_p95": {
+    "median_cells": 342.8,
+    "n_cells": 2924
+  },
+  "leave_one_out": {
+    "rel_elev_mean_m": {
+      "spearman_vs_baseline": 0.9809849801461331,
+      "top_decile_jaccard": 0.7329376854599406
+    },
+    "elev_mean_m": {
+      "spearman_vs_baseline": 0.9905780678192729,
+      "top_decile_jaccard": 0.7696969696969697
+    },
+    "slope_mean_deg": {
+      "spearman_vs_baseline": 0.9847427790276243,
+      "top_decile_jaccard": 0.7914110429447853
+    },
+    "dist_waterway_m": {
+      "spearman_vs_baseline": 0.88430671105546,
+      "top_decile_jaccard": 0.46
+    },
+    "builtup_share": {
+      "spearman_vs_baseline": 0.7779257140341869,
+      "top_decile_jaccard": 0.1252408477842004
+    }
+  },
+  "interpretation": "High Spearman/Jaccard means rankings are robust to the weighting choice; this does NOT validate the index against observed floods."
+}

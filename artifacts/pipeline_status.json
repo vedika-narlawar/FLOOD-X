@@ -1,0 +1,805 @@
+{
+  "stages": {
+    "registry_init": {
+      "status": "success",
+      "message": "completed",
+      "outputs": [
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\registry\\datasets.json"
+      ],
+      "started_at": "2026-10-14T06:36:17+00:00",
+      "finished_at": "2026-10-14T06:36:17+00:00",
+      "details": {}
+    },
+    "access_probe": {
+      "status": "success",
+      "message": "completed",
+      "outputs": [
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\registry\\access_probe.json"
+      ],
+      "started_at": "2026-10-16T13:43:03+00:00",
+      "finished_at": "2026-10-16T13:43:09+00:00",
+      "details": {}
+    },
+    "boundaries": {
+      "status": "success",
+      "message": "completed",
+      "outputs": [
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\interim\\boundaries_pmc_wards_2022.gpkg",
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\interim\\boundaries_pmc_admin_wards_2017.gpkg",
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\interim\\boundaries_pcmc_wards.gpkg"
+      ],
+      "started_at": "2026-10-14T06:36:30+00:00",
+      "finished_at": "2026-10-14T06:36:30+00:00",
+      "details": {}
+    },
+    "study_area": {
+      "status": "success",
+      "message": "completed",
+      "outputs": [
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\interim\\study_area.gpkg"
+      ],
+      "started_at": "2026-10-14T06:36:30+00:00",
+      "finished_at": "2026-10-14T06:36:31+00:00",
+      "details": {}
+    },
+    "grid": {
+      "status": "success",
+      "message": "completed",
+      "outputs": [
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\processed\\grid.gpkg"
+      ],
+      "started_at": "2026-10-14T06:36:31+00:00",
+      "finished_at": "2026-10-14T06:36:35+00:00",
+      "details": {}
+    },
+    "label_audit": {
+      "status": "success",
+      "message": "completed",
+      "outputs": [
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\artifacts\\models\\method_decision.json"
+      ],
+      "started_at": "2026-10-14T06:36:35+00:00",
+      "finished_at": "2026-10-14T06:36:35+00:00",
+      "details": {}
+    },
+    "download_dem": {
+      "status": "success",
+      "message": "completed",
+      "outputs": [
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\raw\\dem\\Copernicus_DSM_COG_10_N18_00_E073_00_DEM.tif",
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\raw\\dem\\Copernicus_DSM_COG_10_N18_00_E074_00_DEM.tif"
+      ],
+      "started_at": "2026-10-20T12:20:25+00:00",
+      "finished_at": "2026-10-20T12:20:26+00:00",
+      "details": {}
+    },
+    "download_landcover": {
+      "status": "success",
+      "message": "completed",
+      "outputs": [
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\raw\\landcover\\ESA_WorldCover_10m_2021_v200_N18E072_Map.tif"
+      ],
+      "started_at": "2026-10-20T12:27:22+00:00",
+      "finished_at": "2026-10-20T12:27:22+00:00",
+      "details": {}
+    },
+    "download_population": {
+      "status": "success",
+      "message": "completed",
+      "outputs": [
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\raw\\population\\worldpop_ind_2020_pune_clip.tif"
+      ],
+      "started_at": "2026-10-20T12:28:42+00:00",
+      "finished_at": "2026-10-20T12:28:42+00:00",
+      "details": {}
+    },
+    "download_osm": {
+      "status": "success",
+      "message": "completed",
+      "outputs": [
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\interim\\osm_waterways.gpkg",
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\interim\\osm_roads.gpkg",
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\interim\\osm_facilities.gpkg"
+      ],
+      "started_at": "2026-10-20T12:29:59+00:00",
+      "finished_at": "2026-10-20T12:30:04+00:00",
+      "details": {}
+    },
+    "download_rainfall": {
+      "status": "success",
+      "message": "completed",
+      "outputs": [
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\processed\\rainfall_historical.parquet",
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\processed\\rainfall_forecast.parquet"
+      ],
+      "started_at": "2026-11-15T20:47:56+00:00",
+      "finished_at": "2026-11-15T20:47:58+00:00",
+      "details": {}
+    },
+    "terrain": {
+      "status": "success",
+      "message": "completed",
+      "outputs": [
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\processed\\terrain\\elevation_utm.tif",
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\processed\\terrain\\slope_deg.tif",
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\processed\\terrain\\rel_elev_m.tif"
+      ],
+      "started_at": "2026-10-20T13:34:00+00:00",
+      "finished_at": "2026-10-20T13:34:02+00:00",
+      "details": {}
+    },
+    "grid_features": {
+      "status": "success",
+      "message": "completed",
+      "outputs": [
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\processed\\features\\grid_features.parquet",
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\data\\processed\\features\\feature_manifest.json"
+      ],
+      "started_at": "2026-10-20T13:39:47+00:00",
+      "finished_at": "2026-10-20T13:40:20+00:00",
+      "details": {}
+    },
+    "susceptibility_index": {
+      "status": "success",
+      "message": "completed",
+      "outputs": [
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\artifacts\\layers\\susceptibility_grid.geojson",
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\artifacts\\layers\\susceptibility_grid.gpkg",
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\artifacts\\layers\\susceptibility_metadata.json",
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\artifacts\\layers\\susceptibility_zones.geojson"
+      ],
+      "started_at": "2026-10-29T08:20:22+00:00",
+      "finished_at": "2026-10-29T08:20:28+00:00",
+      "details": {}
+    },
+    "exposure": {
+      "status": "success",
+      "message": "completed",
+      "outputs": [
+        "C:\\Users\\nidhi\\Downloads\\flood-x (1)\\flood-x\\artifacts\\layers\\exposure_summary.json"
+      ],
+      "started_at": "2026-11-15T13:46:41+00:00",
+      "finished_at": "2026-11-15T13:46:42+00:00",
+      "details": {}
+    }
+  },
+  "history": [
+    {
+      "stage": "registry_init",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-13T07:27:54+00:00",
+      "finished_at": "2026-10-13T07:27:54+00:00"
+    },
+    {
+      "stage": "access_probe",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-13T07:27:54+00:00",
+      "finished_at": "2026-10-13T07:27:54+00:00"
+    },
+    {
+      "stage": "boundaries",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-13T07:27:54+00:00",
+      "finished_at": "2026-10-13T07:27:55+00:00"
+    },
+    {
+      "stage": "study_area",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-13T07:27:55+00:00",
+      "finished_at": "2026-10-13T07:27:55+00:00"
+    },
+    {
+      "stage": "grid",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-13T07:27:55+00:00",
+      "finished_at": "2026-10-13T07:27:55+00:00"
+    },
+    {
+      "stage": "label_audit",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-13T07:27:55+00:00",
+      "finished_at": "2026-10-13T07:27:55+00:00"
+    },
+    {
+      "stage": "download_dem",
+      "status": "blocked",
+      "message": "Remote source unavailable: download failed for https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N18_00_E073_00_DEM/Copernicus_DSM_COG_10_N18_00_E073_00_DEM.tif: DNS resolution failed for https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N18_00_E073_00_DEM/Copernicus_DSM_COG_10_N18_00_E073_00_DEM.tif (host unreachable from this environment)",
+      "started_at": "2026-10-13T07:27:55+00:00",
+      "finished_at": "2026-10-13T07:27:55+00:00"
+    },
+    {
+      "stage": "download_landcover",
+      "status": "blocked",
+      "message": "Remote source unavailable: download failed for https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N18E072_Map.tif: DNS resolution failed for https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N18E072_Map.tif (host unreachable from this environment)",
+      "started_at": "2026-10-13T07:27:55+00:00",
+      "finished_at": "2026-10-13T07:27:55+00:00"
+    },
+    {
+      "stage": "download_population",
+      "status": "blocked",
+      "message": "Remote source unavailable: WorldPop read failed: CURL error: Could not resolve host: data.worldpop.org",
+      "started_at": "2026-10-13T07:27:55+00:00",
+      "finished_at": "2026-10-13T07:27:55+00:00"
+    },
+    {
+      "stage": "download_osm",
+      "status": "blocked",
+      "message": "Remote source unavailable: DNS resolution failed for https://overpass-api.de/api/interpreter (host unreachable from this environment)",
+      "started_at": "2026-10-13T07:27:55+00:00",
+      "finished_at": "2026-10-13T07:27:55+00:00"
+    },
+    {
+      "stage": "download_rainfall",
+      "status": "blocked",
+      "message": "Remote source unavailable: DNS resolution failed for https://archive-api.open-meteo.com/v1/archive (host unreachable from this environment)",
+      "started_at": "2026-10-13T07:27:55+00:00",
+      "finished_at": "2026-10-13T07:27:55+00:00"
+    },
+    {
+      "stage": "terrain",
+      "status": "blocked",
+      "message": "No DEM tiles in data/raw/dem (download_dem stage blocked or not run)",
+      "started_at": "2026-10-13T07:27:55+00:00",
+      "finished_at": "2026-10-13T07:27:55+00:00"
+    },
+    {
+      "stage": "grid_features",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-13T07:27:55+00:00",
+      "finished_at": "2026-10-13T07:27:55+00:00"
+    },
+    {
+      "stage": "susceptibility_index",
+      "status": "blocked",
+      "message": "Susceptibility index not computable: only 0 of required minimum 3 variables available. Skipped: ['rel_elev_mean_m (column not present (feature unavailable))', 'elev_mean_m (column not present (feature unavailable))', 'slope_mean_deg (column not present (feature unavailable))', 'dist_waterway_m (column not present (feature unavailable))', 'builtup_share (column not present (feature unavailable))']",
+      "started_at": "2026-10-13T07:27:55+00:00",
+      "finished_at": "2026-10-13T07:27:55+00:00"
+    },
+    {
+      "stage": "exposure",
+      "status": "blocked",
+      "message": "susceptibility grid not generated (index blocked)",
+      "started_at": "2026-10-13T07:27:55+00:00",
+      "finished_at": "2026-10-13T07:27:55+00:00"
+    },
+    {
+      "stage": "grid_features",
+      "status": "blocked",
+      "message": "Grid skeleton written, but no environmental features could be computed: all raster/OSM inputs are unavailable (see feature_manifest.json for per-feature reasons)",
+      "started_at": "2026-10-13T07:28:06+00:00",
+      "finished_at": "2026-10-13T07:28:06+00:00"
+    },
+    {
+      "stage": "boundaries",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T06:21:23+00:00",
+      "finished_at": "2026-10-14T06:21:23+00:00"
+    },
+    {
+      "stage": "study_area",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T06:21:23+00:00",
+      "finished_at": "2026-10-14T06:21:24+00:00"
+    },
+    {
+      "stage": "grid",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T06:21:24+00:00",
+      "finished_at": "2026-10-14T06:21:26+00:00"
+    },
+    {
+      "stage": "grid_features",
+      "status": "blocked",
+      "message": "Grid skeleton written, but no environmental features could be computed: all raster/OSM inputs are unavailable (see feature_manifest.json for per-feature reasons)",
+      "started_at": "2026-10-14T06:21:26+00:00",
+      "finished_at": "2026-10-14T06:21:26+00:00"
+    },
+    {
+      "stage": "registry_init",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T06:25:35+00:00",
+      "finished_at": "2026-10-14T06:25:35+00:00"
+    },
+    {
+      "stage": "access_probe",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T06:25:35+00:00",
+      "finished_at": "2026-10-14T06:25:41+00:00"
+    },
+    {
+      "stage": "boundaries",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T06:25:41+00:00",
+      "finished_at": "2026-10-14T06:25:42+00:00"
+    },
+    {
+      "stage": "study_area",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T06:25:42+00:00",
+      "finished_at": "2026-10-14T06:25:42+00:00"
+    },
+    {
+      "stage": "grid",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T06:25:42+00:00",
+      "finished_at": "2026-10-14T06:25:46+00:00"
+    },
+    {
+      "stage": "label_audit",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T06:25:46+00:00",
+      "finished_at": "2026-10-14T06:25:46+00:00"
+    },
+    {
+      "stage": "registry_init",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T06:36:17+00:00",
+      "finished_at": "2026-10-14T06:36:17+00:00"
+    },
+    {
+      "stage": "access_probe",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T06:36:17+00:00",
+      "finished_at": "2026-10-14T06:36:30+00:00"
+    },
+    {
+      "stage": "boundaries",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T06:36:30+00:00",
+      "finished_at": "2026-10-14T06:36:30+00:00"
+    },
+    {
+      "stage": "study_area",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T06:36:30+00:00",
+      "finished_at": "2026-10-14T06:36:31+00:00"
+    },
+    {
+      "stage": "grid",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T06:36:31+00:00",
+      "finished_at": "2026-10-14T06:36:35+00:00"
+    },
+    {
+      "stage": "label_audit",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T06:36:35+00:00",
+      "finished_at": "2026-10-14T06:36:35+00:00"
+    },
+    {
+      "stage": "download_dem",
+      "status": "failed",
+      "message": "PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\\\Users\\\\nidhi\\\\Downloads\\\\flood-x (1)\\\\flood-x\\\\data\\\\raw\\\\dem\\\\Copernicus_DSM_COG_10_N18_00_E073_00_DEM.tif.part'",
+      "started_at": "2026-10-14T06:25:46+00:00",
+      "finished_at": "2026-10-14T06:46:04+00:00"
+    },
+    {
+      "stage": "download_dem",
+      "status": "failed",
+      "message": "PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\\\Users\\\\nidhi\\\\Downloads\\\\flood-x (1)\\\\flood-x\\\\data\\\\raw\\\\dem\\\\Copernicus_DSM_COG_10_N18_00_E073_00_DEM.tif.part'",
+      "started_at": "2026-10-14T06:36:35+00:00",
+      "finished_at": "2026-10-14T06:49:45+00:00"
+    },
+    {
+      "stage": "download_landcover",
+      "status": "failed",
+      "message": "PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\\\Users\\\\nidhi\\\\Downloads\\\\flood-x (1)\\\\flood-x\\\\data\\\\raw\\\\landcover\\\\ESA_WorldCover_10m_2021_v200_N18E072_Map.tif.part'",
+      "started_at": "2026-10-14T06:49:45+00:00",
+      "finished_at": "2026-10-14T06:51:46+00:00"
+    },
+    {
+      "stage": "download_population",
+      "status": "blocked",
+      "message": "Remote source unavailable: WorldPop read failed: Range downloading not supported by this server!",
+      "started_at": "2026-10-14T06:51:46+00:00",
+      "finished_at": "2026-10-14T06:52:52+00:00"
+    },
+    {
+      "stage": "download_osm",
+      "status": "blocked",
+      "message": "Remote source unavailable: POST https://overpass-api.de/api/interpreter failed after 3 attempts: HTTP 504 from https://overpass-api.de/api/interpreter",
+      "started_at": "2026-10-14T06:52:52+00:00",
+      "finished_at": "2026-10-14T06:54:23+00:00"
+    },
+    {
+      "stage": "download_rainfall",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T06:54:23+00:00",
+      "finished_at": "2026-10-14T06:54:28+00:00"
+    },
+    {
+      "stage": "terrain",
+      "status": "failed",
+      "message": "RasterioIOError: Read failed. See previous exception for details.",
+      "started_at": "2026-10-14T06:54:28+00:00",
+      "finished_at": "2026-10-14T06:54:28+00:00"
+    },
+    {
+      "stage": "grid_features",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T06:54:28+00:00",
+      "finished_at": "2026-10-14T06:54:29+00:00"
+    },
+    {
+      "stage": "susceptibility_index",
+      "status": "blocked",
+      "message": "Susceptibility index not computable: only 1 of required minimum 3 variables available. Skipped: ['rel_elev_mean_m (column not present (feature unavailable))', 'elev_mean_m (column not present (feature unavailable))', 'slope_mean_deg (column not present (feature unavailable))', 'builtup_share (column not present (feature unavailable))']",
+      "started_at": "2026-10-14T06:54:29+00:00",
+      "finished_at": "2026-10-14T06:54:29+00:00"
+    },
+    {
+      "stage": "exposure",
+      "status": "blocked",
+      "message": "susceptibility grid not generated (index blocked)",
+      "started_at": "2026-10-14T06:54:29+00:00",
+      "finished_at": "2026-10-14T06:54:29+00:00"
+    },
+    {
+      "stage": "download_landcover",
+      "status": "blocked",
+      "message": "Remote source unavailable: download failed for https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N18E072_Map.tif: HTTPSConnectionPool(host='esa-worldcover.s3.eu-central-1.amazonaws.com', port=443): Read timed out.",
+      "started_at": "2026-10-14T06:46:04+00:00",
+      "finished_at": "2026-10-14T07:05:50+00:00"
+    },
+    {
+      "stage": "download_population",
+      "status": "blocked",
+      "message": "Remote source unavailable: WorldPop read failed: Range downloading not supported by this server!",
+      "started_at": "2026-10-14T07:05:50+00:00",
+      "finished_at": "2026-10-14T07:05:55+00:00"
+    },
+    {
+      "stage": "download_osm",
+      "status": "blocked",
+      "message": "Remote source unavailable: POST https://overpass-api.de/api/interpreter failed after 3 attempts: HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out.",
+      "started_at": "2026-10-14T07:05:55+00:00",
+      "finished_at": "2026-10-14T07:12:27+00:00"
+    },
+    {
+      "stage": "download_rainfall",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T07:12:27+00:00",
+      "finished_at": "2026-10-14T07:12:34+00:00"
+    },
+    {
+      "stage": "terrain",
+      "status": "failed",
+      "message": "RasterioIOError: Read failed. See previous exception for details.",
+      "started_at": "2026-10-14T07:12:34+00:00",
+      "finished_at": "2026-10-14T07:12:34+00:00"
+    },
+    {
+      "stage": "grid_features",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T07:12:34+00:00",
+      "finished_at": "2026-10-14T07:12:35+00:00"
+    },
+    {
+      "stage": "susceptibility_index",
+      "status": "blocked",
+      "message": "Susceptibility index not computable: only 1 of required minimum 3 variables available. Skipped: ['rel_elev_mean_m (column not present (feature unavailable))', 'elev_mean_m (column not present (feature unavailable))', 'slope_mean_deg (column not present (feature unavailable))', 'builtup_share (column not present (feature unavailable))']",
+      "started_at": "2026-10-14T07:12:35+00:00",
+      "finished_at": "2026-10-14T07:12:35+00:00"
+    },
+    {
+      "stage": "exposure",
+      "status": "blocked",
+      "message": "susceptibility grid not generated (index blocked)",
+      "started_at": "2026-10-14T07:12:35+00:00",
+      "finished_at": "2026-10-14T07:12:35+00:00"
+    },
+    {
+      "stage": "download_dem",
+      "status": "blocked",
+      "message": "Remote source unavailable: download failed for https://copernicus-dem-30m.s3.amazonaws.com/Copernicus_DSM_COG_10_N18_00_E073_00_DEM/Copernicus_DSM_COG_10_N18_00_E073_00_DEM.tif: HTTPSConnectionPool(host='copernicus-dem-30m.s3.amazonaws.com', port=443): Read timed out.",
+      "started_at": "2026-10-14T06:45:35+00:00",
+      "finished_at": "2026-10-14T07:22:03+00:00"
+    },
+    {
+      "stage": "download_landcover",
+      "status": "blocked",
+      "message": "Remote source unavailable: download failed for https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N18E072_Map.tif: DNS resolution failed for https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N18E072_Map.tif (host unreachable from this environment)",
+      "started_at": "2026-10-14T10:27:47+00:00",
+      "finished_at": "2026-10-14T10:27:47+00:00"
+    },
+    {
+      "stage": "download_population",
+      "status": "blocked",
+      "message": "Remote source unavailable: WorldPop read failed: CURL error: Failed to connect to data.worldpop.org port 443 after 1551 ms: Could not connect to server",
+      "started_at": "2026-10-14T10:27:54+00:00",
+      "finished_at": "2026-10-14T10:28:27+00:00"
+    },
+    {
+      "stage": "download_osm",
+      "status": "blocked",
+      "message": "Remote source unavailable: DNS resolution failed for https://overpass-api.de/api/interpreter (host unreachable from this environment)",
+      "started_at": "2026-10-14T10:28:30+00:00",
+      "finished_at": "2026-10-14T10:28:30+00:00"
+    },
+    {
+      "stage": "download_rainfall",
+      "status": "blocked",
+      "message": "Remote source unavailable: DNS resolution failed for https://archive-api.open-meteo.com/v1/archive (host unreachable from this environment)",
+      "started_at": "2026-10-14T10:28:33+00:00",
+      "finished_at": "2026-10-14T10:36:54+00:00"
+    },
+    {
+      "stage": "terrain",
+      "status": "failed",
+      "message": "RasterioIOError: Read failed. See previous exception for details.",
+      "started_at": "2026-10-14T10:36:57+00:00",
+      "finished_at": "2026-10-14T10:36:58+00:00"
+    },
+    {
+      "stage": "grid_features",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T10:36:58+00:00",
+      "finished_at": "2026-10-14T10:36:58+00:00"
+    },
+    {
+      "stage": "susceptibility_index",
+      "status": "blocked",
+      "message": "Susceptibility index not computable: only 1 of required minimum 3 variables available. Skipped: ['rel_elev_mean_m (column not present (feature unavailable))', 'elev_mean_m (column not present (feature unavailable))', 'slope_mean_deg (column not present (feature unavailable))', 'builtup_share (column not present (feature unavailable))']",
+      "started_at": "2026-10-14T10:36:58+00:00",
+      "finished_at": "2026-10-14T10:36:58+00:00"
+    },
+    {
+      "stage": "exposure",
+      "status": "blocked",
+      "message": "susceptibility grid not generated (index blocked)",
+      "started_at": "2026-10-14T10:36:58+00:00",
+      "finished_at": "2026-10-14T10:36:58+00:00"
+    },
+    {
+      "stage": "terrain",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T17:35:17+00:00",
+      "finished_at": "2026-10-14T17:35:19+00:00"
+    },
+    {
+      "stage": "grid_features",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T17:35:58+00:00",
+      "finished_at": "2026-10-14T17:36:15+00:00"
+    },
+    {
+      "stage": "susceptibility_index",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T18:32:53+00:00",
+      "finished_at": "2026-10-14T18:33:14+00:00"
+    },
+    {
+      "stage": "grid_features",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T18:38:09+00:00",
+      "finished_at": "2026-10-14T18:38:20+00:00"
+    },
+    {
+      "stage": "susceptibility_index",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T18:39:08+00:00",
+      "finished_at": "2026-10-14T18:39:13+00:00"
+    },
+    {
+      "stage": "susceptibility_index",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T19:04:45+00:00",
+      "finished_at": "2026-10-14T19:04:49+00:00"
+    },
+    {
+      "stage": "exposure",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-14T19:51:14+00:00",
+      "finished_at": "2026-10-14T19:51:14+00:00"
+    },
+    {
+      "stage": "exposure",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-15T03:17:08+00:00",
+      "finished_at": "2026-10-15T03:17:08+00:00"
+    },
+    {
+      "stage": "exposure",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-15T03:23:47+00:00",
+      "finished_at": "2026-10-15T03:23:47+00:00"
+    },
+    {
+      "stage": "grid_features",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-15T04:58:04+00:00",
+      "finished_at": "2026-10-15T04:58:23+00:00"
+    },
+    {
+      "stage": "susceptibility_index",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-15T04:58:32+00:00",
+      "finished_at": "2026-10-15T04:58:39+00:00"
+    },
+    {
+      "stage": "exposure",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-15T04:59:00+00:00",
+      "finished_at": "2026-10-15T04:59:00+00:00"
+    },
+    {
+      "stage": "grid_features",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-15T05:13:07+00:00",
+      "finished_at": "2026-10-15T05:13:58+00:00"
+    },
+    {
+      "stage": "susceptibility_index",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-15T05:14:11+00:00",
+      "finished_at": "2026-10-15T05:14:23+00:00"
+    },
+    {
+      "stage": "exposure",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-15T05:14:30+00:00",
+      "finished_at": "2026-10-15T05:14:31+00:00"
+    },
+    {
+      "stage": "grid_features",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-16T09:41:41+00:00",
+      "finished_at": "2026-10-16T09:42:12+00:00"
+    },
+    {
+      "stage": "susceptibility_index",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-16T09:44:54+00:00",
+      "finished_at": "2026-10-16T09:45:02+00:00"
+    },
+    {
+      "stage": "exposure",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-16T09:45:25+00:00",
+      "finished_at": "2026-10-16T09:45:25+00:00"
+    },
+    {
+      "stage": "access_probe",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-16T13:43:03+00:00",
+      "finished_at": "2026-10-16T13:43:09+00:00"
+    },
+    {
+      "stage": "download_dem",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-20T12:20:25+00:00",
+      "finished_at": "2026-10-20T12:20:26+00:00"
+    },
+    {
+      "stage": "download_landcover",
+      "status": "failed",
+      "message": "ValueError: landcover_worldcover_2021 rejected: [{'check': 'sufficient_valid_pixels', 'passed': False, 'detail': '0.840 valid'}]",
+      "started_at": "2026-10-20T12:20:54+00:00",
+      "finished_at": "2026-10-20T12:20:55+00:00"
+    },
+    {
+      "stage": "download_landcover",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-20T12:27:22+00:00",
+      "finished_at": "2026-10-20T12:27:22+00:00"
+    },
+    {
+      "stage": "download_population",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-20T12:28:42+00:00",
+      "finished_at": "2026-10-20T12:28:42+00:00"
+    },
+    {
+      "stage": "download_osm",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-20T12:29:59+00:00",
+      "finished_at": "2026-10-20T12:30:04+00:00"
+    },
+    {
+      "stage": "terrain",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-20T12:31:21+00:00",
+      "finished_at": "2026-10-20T12:31:23+00:00"
+    },
+    {
+      "stage": "terrain",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-20T13:34:00+00:00",
+      "finished_at": "2026-10-20T13:34:02+00:00"
+    },
+    {
+      "stage": "grid_features",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-20T13:39:47+00:00",
+      "finished_at": "2026-10-20T13:40:20+00:00"
+    },
+    {
+      "stage": "susceptibility_index",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-20T13:40:54+00:00",
+      "finished_at": "2026-10-20T13:41:02+00:00"
+    },
+    {
+      "stage": "exposure",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-20T13:42:15+00:00",
+      "finished_at": "2026-10-20T13:42:16+00:00"
+    },
+    {
+      "stage": "susceptibility_index",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-10-29T08:20:22+00:00",
+      "finished_at": "2026-10-29T08:20:28+00:00"
+    },
+    {
+      "stage": "exposure",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-11-15T13:46:41+00:00",
+      "finished_at": "2026-11-15T13:46:42+00:00"
+    },
+    {
+      "stage": "download_rainfall",
+      "status": "success",
+      "message": "completed",
+      "started_at": "2026-11-15T20:47:56+00:00",
+      "finished_at": "2026-11-15T20:47:58+00:00"
+    }
+  ]
+}

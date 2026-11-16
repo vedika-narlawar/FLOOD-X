@@ -1,0 +1,4 @@
+# Data dictionary
+Grid (`data/processed/grid.gpkg`, EPSG:32643): `cell_id, clipped_area_m2, ward_id, ward_name`.
+Features (`grid_features.parquet`; per-feature units/source/status in `feature_manifest.json`): `elev_mean_m` (m, EGM2008 DSM), `slope_mean_deg`, `rel_elev_mean_m` (pixel minus 1 km square-window mean), `builtup_share`, `vegetated_share` (0–1, WorldCover classes), `population_sum` (people, WorldPop modelled), `dist_waterway_m` (m, OSM), `road_length_m`, `n_hospital|clinic|school|fire_station|police` (counts, OSM). Unavailable features are absent/NaN — never zero-filled (zero is used only where the source layer exists and nothing is mapped, e.g. counts).
+Scores (`artifacts/layers/susceptibility_grid.*`): `score` 0–100, `category` (quintile), `n_inputs_used`, `contrib_<var>`. Zones: `score_mean, score_p90, high_share, rank_by_mean, exp_*` (exposure sums, separate), `top_driver`.

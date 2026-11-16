@@ -1,0 +1,29 @@
+import { Panel, Q, Td, Th, fmt } from "../components/ui";
+import { useApi } from "../api";
+
+const PROMPTS: Record<string, string> = {
+  rel_elev_mean_m: "Field-verify local depressions and inlet/gully capacity in low-lying parts of the ward.",
+  elev_mean_m: "Review the ward's position in its sub-catchment and downstream drainage outfalls.",
+  slope_mean_deg: "Check outfall gradients and ponding at flat sections with the drainage department.",
+  dist_waterway_m: "Inspect nearby stream/nallah channel condition, encroachment and culvert capacity.",
+  builtup_share: "Identify opportunities to retain runoff (permeable surfaces, detention) in dense built-up cells.",
+};
+
+export default function Mitigation() {
+  const z = useApi<any>("/api/susceptibility/zones");
+  return (
+    <div className="space-y-4">
+      <div className="border-l-2 border-am bg-raise p-3 text-xs text-sub"><b className="text-text">Prioritisation for further investigation only.</b> Rankings are from relative screening scores. Susceptibility and exposure are shown separately and are not combined into a risk or loss estimate. Prompts below are not engineering-certified recommendations.</div>
+      <Q q={z} title="Prioritisation unavailable">{(d) => {
+        const rows = d.features.map((f: any) => f.properties).filter((p: any) => p.score_mean != null).sort((a: any, b: any) => a.rank_by_mean - b.rank_by_mean);
+        return (
+          <Panel title="Wards ranked by mean susceptibility score"><div className="overflow-x-auto"><table className="w-full"><thead><tr>
+            <Th>#</Th><Th>Ward</Th><Th right>Mean score</Th><Th right>P90</Th><Th right>High/Very high cells</Th><Th right>Population*</Th><Th right>Hospitals*</Th><Th right>Schools*</Th><Th>Main driver</Th><Th>Preliminary investigation prompt</Th></tr></thead><tbody>
+            {rows.map((p: any) => <tr key={p.ward_id}><Td mono>{p.rank_by_mean}</Td><Td>{p.ward_name}</Td><Td right mono>{fmt(p.score_mean)}</Td><Td right mono>{fmt(p.score_p90)}</Td><Td right mono>{fmt(p.high_share * 100, 0)}%</Td>
+              <Td right mono>{fmt(p.exp_population_sum, 0)}</Td><Td right mono>{fmt(p.exp_n_hospital, 0)}</Td><Td right mono>{fmt(p.exp_n_school, 0)}</Td>
+              <Td><span className="font-mono text-cy">{p.top_driver ?? "—"}</span></Td><Td>{PROMPTS[p.top_driver] ?? "—"}</Td></tr>)}</tbody></table></div>
+            <p className="mt-2 text-[11px] text-mute">* Exposure columns are potential exposure (counts/people located in the ward), from OSM and WorldPop where available; "—" means that layer is unavailable, not zero.</p></Panel>);
+      }}</Q>
+    </div>
+  );
+}

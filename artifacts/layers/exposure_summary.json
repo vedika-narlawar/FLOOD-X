@@ -1,0 +1,77 @@
+{
+  "generated_at": "2026-11-15T13:46:42+00:00",
+  "caveat": "Located in a relatively higher-susceptibility cell != flooded. OSM and WorldPop completeness/accuracy are limited. Exposure is not predicted damage or loss.",
+  "categories": [
+    "Very low",
+    "Low",
+    "Moderate",
+    "High",
+    "Very high"
+  ],
+  "sections": {
+    "facilities": {
+      "status": "available",
+      "by_category": {
+        "Very low": {
+          "n_hospital": 2,
+          "n_clinic": 1,
+          "n_school": 8,
+          "n_fire_station": 0,
+          "n_police": 1
+        },
+        "Low": {
+          "n_hospital": 39,
+          "n_clinic": 9,
+          "n_school": 39,
+          "n_fire_station": 2,
+          "n_police": 5
+        },
+        "Moderate": {
+          "n_hospital": 99,
+          "n_clinic": 40,
+          "n_school": 33,
+          "n_fire_station": 2,
+          "n_police": 11
+        },
+        "High": {
+          "n_hospital": 190,
+          "n_clinic": 125,
+          "n_school": 83,
+          "n_fire_station": 5,
+          "n_police": 15
+        },
+        "Very high": {
+          "n_hospital": 406,
+          "n_clinic": 276,
+          "n_school": 157,
+          "n_fire_station": 9,
+          "n_police": 33
+        }
+      },
+      "note": "OSM-mapped facilities only; not a verified inventory"
+    },
+    "roads": {
+      "status": "available",
+      "unit": "km",
+      "by_category": {
+        "Very low": 443.93,
+        "Low": 1034.25,
+        "Moderate": 1234.1,
+        "High": 1914.11,
+        "Very high": 2794.71
+      }
+    },
+    "population": {
+      "status": "available",
+      "unit": "people (WorldPop modelled, 2020)",
+      "by_category": {
+        "Very low": 216570.0,
+        "Low": 649980.0,
+        "Moderate": 986192.0,
+        "High": 1879104.0,
+        "Very high": 2372754.0
+      },
+      "total": 6104600.0
+    }
+  }
+}

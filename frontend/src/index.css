@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root { height: 100%; }
+body { font-feature-settings: "tnum" 1, "cv11" 1; -webkit-font-smoothing: antialiased; }
+.num { font-variant-numeric: tabular-nums; }
+.leaflet-container { background: #0a0f16; font-family: inherit; }
+.leaflet-control-attribution { background: rgba(10,15,22,.8) !important; color: #7d8da1 !important; }
+.leaflet-control-attribution a { color: #a9b6c6 !important; }
+.leaflet-control-zoom a { background: #0f1722 !important; color: #e4ebf3 !important; border-color: #1e2b3b !important; }
+:focus-visible { outline: 2px solid #22d3ee; outline-offset: 1px; }
+::-webkit-scrollbar { width: 8px; height: 8px; } ::-webkit-scrollbar-thumb { background: #1e2b3b; }
+
+/* Darken standard OSM tiles to match the console theme (no API key needed) */
+.leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(0.8) contrast(0.9) saturate(0.6); }

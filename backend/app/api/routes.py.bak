@@ -1,0 +1,333 @@
+from __future__ import annotations
+
+import json
+from datetime import datetime, timezone
+
+import pandas as pd
+from fastapi import APIRouter, HTTPException, Query
+
+from pipeline import status as pstatus
+from pipeline.common import art_dir, data_dir, read_json
+
+from ..repositories import artifacts as repo
+from ..schemas.scenario import ScenarioRequest
+from ..services import scenario as scen
+
+router = APIRouter(prefix="/api")
+PUNE = (73.55, 18.30, 74.15, 18.75)
+SEMANTICS = {
+    "susceptibility": "Relative physical tendency for flooding from environmental/geographic conditions (screening score, not probability).",
+    "hazard": "Flooding characterised by probability/extent/depth for a defined event. NOT produced by this system.",
+    "exposure": "People/assets located in an area of interest (here: relatively higher-susceptibility cells). Not flooded, not damaged.",
+    "vulnerability": "Propensity of exposed people/assets to harm. NOT assessed.",
+    "prediction": "Model-based estimate of future flooding with validation. NOT produced by this system.",
+}
+
+
+def _bbox(bbox: str | None):
+    if not bbox:
+        return None
+    try:
+        x0, y0, x1, y1 = (float(v) for v in bbox.split(","))
+    except ValueError:
+        raise HTTPException(422, "bbox must be 'minLon,minLat,maxLon,maxLat'")
+    if not (x0 < x1 and y0 < y1):
+        raise HTTPException(422, "bbox min must be less than max")
+    if x0 < PUNE[0] - 1 or x1 > PUNE[2] + 1 or y0 < PUNE[1] - 1 or y1 > PUNE[3] + 1:
+        raise HTTPException(422, "bbox outside the Pune study region")
+    return x0, y0, x1, y1
+
+
+@router.get("/health")
+def health():
+    return {"status": "ok", "time": datetime.now(timezone.utc).isoformat(timespec="seconds")}
+
+
+@router.get("/status")
+def status():
+    led = pstatus.load()["stages"]
+    ds = repo.registry_all()
+    counts: dict[str, int] = {}
+    for d in ds.values():
+        counts[d["status"]] = counts.get(d["status"], 0) + 1
+    scount: dict[str, int] = {}
+    for s in led.values():
+        scount[s["status"]] = scount.get(s["status"], 0) + 1
+    md = read_json(art_dir() / "models" / "method_decision.json")
+    return {"backend": "ok", "datasets_by_status": counts, "stages_by_status": scount,
+            "susceptibility_available": repo.layer("susceptibility_grid.geojson").exists(),
+            "active_method": md["active_method"] if md else None, "active_path": md["active_path"] if md else None,
+            "supervised_model_trained": False,
+            "last_pipeline_activity": max((s["finished_at"] for s in led.values()), default=None)}
+
+
+
+@router.get("/datasets")
+def datasets():
+    from pathlib import Path
+
+    root = data_dir()
+    local_files = {
+        "dem_cop_glo30": [
+            root / "raw" / "dem" / "Copernicus_DSM_COG_10_N18_00_E073_00_DEM.tif",
+            root / "raw" / "dem" / "Copernicus_DSM_COG_10_N18_00_E074_00_DEM.tif",
+        ],
+        "landcover_worldcover_2021": [
+            root / "raw" / "landcover" / "ESA_WorldCover_10m_2021_v200_N18E072_Map.tif",
+        ],
+        "population_worldpop_2020": [
+            root / "raw" / "population" / "worldpop_ind_2020_pune_clip.tif",
+        ],
+        "osm_pune": [
+            root / "raw" / "osm" / "waterways.json",
+            root / "raw" / "osm" / "roads.json",
+            root / "raw" / "osm" / "facilities.json",
+        ],
+    }
+
+    result = []
+    for d in repo.registry_all().values():
+        item = {
+            k: d.get(k) for k in (
+                "id", "name", "publisher", "status", "licence",
+                "source_url", "last_verified", "blocker", "retrieved_at"
+            )
+        }
+
+        required = local_files.get(d["id"], [])
+        if required:
+            existing = [p for p in required if p.is_file()]
+            item["local_available"] = len(existing) == len(required)
+            item["local_files_found"] = len(existing)
+            item["local_files_expected"] = len(required)
+        else:
+            item["local_available"] = False
+            item["local_files_found"] = 0
+            item["local_files_expected"] = 0
+
+        item["analysis_ready"] = d["status"] == "ready_for_analysis"
+        result.append(item)
+
+    return result
+
+
+
+@router.get("/datasets/{dataset_id}")
+def dataset(dataset_id: str):
+    d = repo.registry_all().get(dataset_id)
+    if not d:
+        raise HTTPException(404, f"unknown dataset '{dataset_id}'")
+    return d
+
+
+@router.get("/metadata")
+def metadata():
+    p = data_dir() / "interim" / "study_area.gpkg"
+    sa = None
+    if p.exists():
+        g = repo.read_gdf(p)
+        b = g.total_bounds
+        sa = {"name": g["name"].iloc[0], "area_km2": round(float(g["area_km2"].iloc[0]), 2), "n_wards": int(g["n_wards"].iloc[0]),
+              "analysis_crs": f"EPSG:{int(g['utm_epsg'].iloc[0])}", "bounds_wgs84": [round(float(x), 5) for x in b],
+              "source_dataset": "boundaries_pmc_wards_2022 (+ boundaries_pcmc_wards when present)"}
+    return {"project": "FLOOD-X", "study_area": sa, "terminology": SEMANTICS,
+            "attribution": ["Ward boundaries: DataMeet Trust (CC BY-SA 2.5 IN)", "OSM: (c) OpenStreetMap contributors (ODbL)",
+                            "Rainfall: Open-Meteo.com (CC BY 4.0)", "Basemap tiles: (c) OpenStreetMap contributors"]}
+
+
+@router.get("/study-area")
+def study_area():
+    p = data_dir() / "interim" / "study_area.gpkg"
+    if not p.exists():
+        raise repo.Unavailable("study_area", "Study area not built.", ["boundaries", "study_area"])
+    return json.loads(repo.read_gdf(p).geometry.simplify(0.0002).to_json())
+
+
+@router.get("/boundaries/wards")
+def wards(simplify: float = Query(0.0001, ge=0, le=0.01)):
+    combined = data_dir() / "interim" / "wards_utm.gpkg"
+    p = combined if combined.exists() else data_dir() / "interim" / "boundaries_pmc_wards_2022.gpkg"
+    if not p.exists():
+        raise repo.Unavailable("boundaries", "Ward boundaries not ingested.", ["boundaries"])
+    g = repo.read_gdf(p).copy().to_crs(4326)
+    g["geometry"] = g.geometry.simplify(simplify, preserve_topology=True)
+    if "municipality" not in g.columns:
+        g = g.rename(columns={"wardnum": "ward_id", "Name1": "ward_name"})
+        g["municipality"] = "PMC"
+    g = g[["ward_id", "ward_name", "municipality", "geometry"]]
+    fc = json.loads(g.to_json())
+    fc["metadata"] = {"source": "boundaries_pmc_wards_2022", "crs": "EPSG:4326", "n_features": len(g),
+                      "caveat": "PMC 2022 wards (hand-traced) plus PCMC wards (scraped, vintage undocumented); electoral wards, not drainage units."}
+    return fc
+
+
+@router.get("/features/manifest")
+def features_manifest():
+    m = repo.feature_manifest()
+    if m is None:
+        raise repo.Unavailable("features", "Feature manifest not generated.", ["grid_features"])
+    return m
+
+
+@router.get("/rainfall")
+def rainfall():
+    p = data_dir() / "processed" / "rainfall_historical.parquet"
+    if not p.exists():
+        raise repo.Unavailable("rainfall", "Rainfall data not retrieved (Open-Meteo unreachable or stage not run).",
+                               ["download_rainfall"])
+    df = pd.read_parquet(p)
+    d = repo.registry_all()["rainfall_openmeteo_archive"]
+    acc = {c: (None if df[c].dropna().empty else float(df[c].max())) for c in df.columns if c.startswith("acc_")}
+    fp = data_dir() / "processed" / "rainfall_forecast.parquet"
+    return {"kind": "historical_reanalysis", "provider": d["publisher"], "units": "mm", "timezone": "Asia/Kolkata",
+            "retrieved_at": d["retrieved_at"], "caveat": "Gridded reanalysis - not a rain-gauge measurement.",
+            "rows": len(df), "start": str(df["time"].min()), "end": str(df["time"].max()),
+            "missing_hours": int(df["missing"].sum()), "max_trailing_accumulation_mm": acc,
+            "forecast_available": fp.exists(), "location": d["retrieval"]}
+
+
+@router.get("/rainfall/series")
+def rainfall_series(kind: str = Query("historical", pattern="^(historical|forecast)$"), start: str | None = None,
+                    end: str | None = None, agg: str = Query("hourly", pattern="^(hourly|daily)$"),
+                    limit: int = Query(5000, ge=1, le=20000)):
+    p = data_dir() / "processed" / f"rainfall_{kind}.parquet"
+    if not p.exists():
+        raise repo.Unavailable("rainfall", f"{kind} rainfall not retrieved.", ["download_rainfall"])
+    df = pd.read_parquet(p)
+    try:
+        if start:
+            df = df[df["time"] >= pd.Timestamp(start)]
+        if end:
+            df = df[df["time"] <= pd.Timestamp(end)]
+    except ValueError:
+        raise HTTPException(422, "invalid start/end timestamp")
+    if agg == "daily":
+        s = df.set_index("time")
+        df = pd.DataFrame({"precipitation_mm": s["precipitation_mm"].resample("D").sum(min_count=1),
+                           "missing": s["missing"].resample("D").sum()}).reset_index()
+    df = df.head(limit)
+    df["time"] = df["time"].astype(str)
+    cols = [c for c in ("time", "precipitation_mm", "missing", "acc_1h_mm", "acc_3h_mm", "acc_6h_mm", "acc_12h_mm", "acc_24h_mm", "acc_72h_mm") if c in df.columns]
+    return {"kind": kind, "units": "mm", "agg": agg, "n": len(df), "data": json.loads(df[cols].to_json(orient="records"))}
+
+
+def _summary(cols: list[str], module: str, label: str):
+    m = repo.feature_manifest()
+    avail = [c for c in cols if m and m["features"].get(c, {}).get("status") == "available"]
+    if not avail:
+        reasons = {c: (m or {}).get("features", {}).get(c, {}).get("reason", "feature manifest missing") for c in cols}
+        raise repo.Unavailable(module, f"No {label} features available: {reasons}", ["download_dem" if module == "terrain" else "download_landcover", "grid_features"])
+    df = repo.read_features()
+    return {c: {"units": m["features"][c]["units"], "n_valid": int(df[c].notna().sum()), "mean": float(df[c].mean()),
+                "p05": float(df[c].quantile(0.05)), "p50": float(df[c].median()), "p95": float(df[c].quantile(0.95)),
+                "source_dataset": m["features"][c]["source_dataset"], "method": m["features"][c]["method"]} for c in avail}
+
+
+@router.get("/terrain/summary")
+def terrain_summary():
+    return _summary(["elev_mean_m", "slope_mean_deg", "rel_elev_mean_m"], "terrain", "terrain")
+
+
+@router.get("/landcover/summary")
+def landcover_summary():
+    return _summary(["builtup_share", "vegetated_share"], "landcover", "land-cover")
+
+
+@router.get("/susceptibility/config")
+def susc_config():
+    """Index formula, weights and rationale. Always available (static config), independent of data readiness."""
+    from pipeline.modeling.index import load_config
+    return load_config()
+
+
+@router.get("/susceptibility/metadata")
+def susc_meta():
+    p = repo.require_layer("susceptibility_metadata.json", "susceptibility", ["susceptibility_index"],
+                           "Screening index has not been computed (required input features unavailable).")
+    return json.loads(p.read_text())
+
+
+@router.get("/susceptibility/zones")
+def susc_zones():
+    p = repo.require_layer("susceptibility_zones.geojson", "susceptibility", ["susceptibility_index"], "Zonal scores not generated.")
+    return json.loads(p.read_text())
+
+
+@router.get("/susceptibility/grid")
+def susc_grid(bbox: str | None = None, category: str | None = None, limit: int = Query(2500, ge=1, le=5000), offset: int = Query(0, ge=0)):
+    p = repo.require_layer("susceptibility_grid.geojson", "susceptibility", ["susceptibility_index"], "Susceptibility grid not generated.")
+    g = repo.read_gdf(p)
+    b = _bbox(bbox)
+    if b:
+        g = g.cx[b[0]:b[2], b[1]:b[3]]
+    if category:
+        g = g[g["category"] == category]
+    total = len(g)
+    fc = json.loads(g.iloc[offset: offset + limit].to_json())
+    fc["metadata"] = {"total_matching": total, "offset": offset, "limit": limit, "crs": "EPSG:4326"}
+    return fc
+
+
+@router.get("/exposure/summary")
+def exposure_summary():
+    p = repo.require_layer("exposure_summary.json", "exposure", ["susceptibility_index", "exposure"],
+                           "Exposure not computed: it requires the susceptibility layer plus infrastructure/population inputs.")
+    return json.loads(p.read_text())
+
+
+@router.get("/exposure/facilities")
+def exposure_facilities(type: str | None = Query(None, pattern="^(hospital|clinic|school|fire_station|police)$"),
+                        bbox: str | None = None, limit: int = Query(1000, ge=1, le=5000)):
+    p = repo.require_layer("exposure_facilities.geojson", "exposure", ["download_osm", "exposure"], "OSM facilities not retrieved/joined.")
+    g = repo.read_gdf(p)
+    if type:
+        g = g[g["amenity"] == type]
+    b = _bbox(bbox)
+    if b:
+        g = g.cx[b[0]:b[2], b[1]:b[3]]
+    return json.loads(g.head(limit).to_json())
+
+
+@router.post("/scenarios/evaluate")
+def evaluate_scenario(req: ScenarioRequest):
+    df = pd.DataFrame(repo.read_features().drop(columns="geometry", errors="ignore"))
+    try:
+        return scen.evaluate(df, req)
+    except ValueError as e:
+        raise repo.Unavailable("scenario", f"Scenario cannot be evaluated: {e}", ["grid_features", "susceptibility_index"])
+
+
+@router.get("/model/metrics")
+def model_metrics():
+    md = read_json(art_dir() / "models" / "method_decision.json")
+    if md is None:
+        raise repo.Unavailable("model", "Label audit has not run.", ["label_audit"])
+    return {"status": "not_applicable", "supervised_model_trained": False, "active_path": md["active_path"], "reason": md["reason"],
+            "metrics": None, "note": "No supervised metrics exist or are reported. Index robustness: see sensitivity.",
+            "sensitivity": read_json(art_dir() / "metrics" / "sensitivity.json"), "label_audit": md}
+
+
+@router.get("/model/explainability")
+def model_explain():
+    p = repo.require_layer("susceptibility_metadata.json", "explainability", ["susceptibility_index"],
+                           "Index not computed, so contribution breakdown is unavailable.")
+    meta = json.loads(p.read_text())
+    return {"method": meta["method"], "weights": meta["config"]["variables"], "mean_score_contribution": meta["mean_contribution"],
+            "note": "Contribution = weight-share x normalised value, averaged over scored cells. Exact decomposition of the additive index."}
+
+
+@router.get("/pipeline/status")
+def pipeline_status():
+    led = pstatus.load()
+    from pipeline.run import _stages
+    order = [n for n, _ in _stages()]
+    return {"order": order, "stages": {n: led["stages"].get(n, {"status": "pending", "message": "never run"}) for n in order},
+            "history": led["history"][-60:]}
+
+
+@router.get("/pipeline/probe")
+def pipeline_probe():
+    p = data_dir() / "registry" / "access_probe.json"
+    if not p.exists():
+        raise repo.Unavailable("probe", "Access probe has not run.", ["access_probe"])
+    return json.loads(p.read_text())

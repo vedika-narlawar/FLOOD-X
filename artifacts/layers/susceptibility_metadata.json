@@ -1,0 +1,246 @@
+{
+  "generated_at": "2026-10-29T08:20:28+00:00",
+  "method": "GIS-Based Flood Susceptibility Screening Index",
+  "version": "0.1.0",
+  "output_semantics": "relative screening score 0-100 (NOT a flood probability, hazard, depth or extent)",
+  "crs_analysis": "{\"$schema\": \"https://proj.org/schemas/v0.7/projjson.schema.json\", \"type\": \"ProjectedCRS\", \"name\": \"WGS 84 / UTM zone 43N\", \"base_crs\": {\"name\": \"WGS 84\", \"datum_ensemble\": {\"name\": \"World Geodetic System 1984 ensemble\", \"members\": [{\"name\": \"World Geodetic System 1984 (Transit)\"}, {\"name\": \"World Geodetic System 1984 (G730)\"}, {\"name\": \"World Geodetic System 1984 (G873)\"}, {\"name\": \"World Geodetic System 1984 (G1150)\"}, {\"name\": \"World Geodetic System 1984 (G1674)\"}, {\"name\": \"World Geodetic System 1984 (G1762)\"}, {\"name\": \"World Geodetic System 1984 (G2139)\"}, {\"name\": \"World Geodetic System 1984 (G2296)\"}], \"ellipsoid\": {\"name\": \"WGS 84\", \"semi_major_axis\": 6378137, \"inverse_flattening\": 298.257223563}, \"accuracy\": \"2.0\", \"id\": {\"authority\": \"EPSG\", \"code\": 6326}}, \"coordinate_system\": {\"subtype\": \"ellipsoidal\", \"axis\": [{\"name\": \"Geodetic latitude\", \"abbreviation\": \"Lat\", \"direction\": \"north\", \"unit\": \"degree\"}, {\"name\": \"Geodetic longitude\", \"abbreviation\": \"Lon\", \"direction\": \"east\", \"unit\": \"degree\"}]}, \"id\": {\"authority\": \"EPSG\", \"code\": 4326}}, \"conversion\": {\"name\": \"UTM zone 43N\", \"method\": {\"name\": \"Transverse Mercator\", \"id\": {\"authority\": \"EPSG\", \"code\": 9807}}, \"parameters\": [{\"name\": \"Latitude of natural origin\", \"value\": 0, \"unit\": \"degree\", \"id\": {\"authority\": \"EPSG\", \"code\": 8801}}, {\"name\": \"Longitude of natural origin\", \"value\": 75, \"unit\": \"degree\", \"id\": {\"authority\": \"EPSG\", \"code\": 8802}}, {\"name\": \"Scale factor at natural origin\", \"value\": 0.9996, \"unit\": \"unity\", \"id\": {\"authority\": \"EPSG\", \"code\": 8805}}, {\"name\": \"False easting\", \"value\": 500000, \"unit\": \"metre\", \"id\": {\"authority\": \"EPSG\", \"code\": 8806}}, {\"name\": \"False northing\", \"value\": 0, \"unit\": \"metre\", \"id\": {\"authority\": \"EPSG\", \"code\": 8807}}]}, \"coordinate_system\": {\"subtype\": \"Cartesian\", \"axis\": [{\"name\": \"Easting\", \"abbreviation\": \"E\", \"direction\": \"east\", \"unit\": \"metre\"}, {\"name\": \"Northing\", \"abbreviation\": \"N\", \"direction\": \"north\", \"unit\": \"metre\"}]}, \"scope\": \"Navigation and medium accuracy spatial referencing.\", \"area\": \"Between 72\\u00b0E and 78\\u00b0E, northern hemisphere between equator and 84\\u00b0N, onshore and offshore. China. India. Kazakhstan. Kyrgyzstan. Maldives. Pakistan. Russian Federation. Tajikistan.\", \"bbox\": {\"south_latitude\": 0, \"west_longitude\": 72, \"north_latitude\": 84, \"east_longitude\": 78}, \"id\": {\"authority\": \"EPSG\", \"code\": 32643}}",
+  "crs_delivery": "EPSG:4326",
+  "cell_size_m": 500,
+  "config": {
+    "name": "GIS-Based Flood Susceptibility Screening Index",
+    "version": "0.1.0",
+    "output": "relative screening score 0-100 (NOT a flood probability, hazard, depth or extent)",
+    "min_inputs": 3,
+    "normalization": {
+      "method": "percentile_minmax",
+      "lower_pct": 2,
+      "upper_pct": 98,
+      "note": "Scaled relative to the study area itself; scores are only comparable within one run."
+    },
+    "categories": {
+      "method": "quantile",
+      "labels": [
+        "Very low",
+        "Low",
+        "Moderate",
+        "High",
+        "Very high"
+      ],
+      "note": "Equal-count quintiles: 'Very high' always contains ~20% of cells by construction. Categories are relative ranks, not absolute hazard classes."
+    },
+    "variables": [
+      {
+        "name": "rel_elev_mean_m",
+        "label": "Local relative elevation",
+        "direction": "decrease",
+        "weight": 0.25,
+        "rationale": "Cells lower than their ~1 km surroundings collect runoff (topographic wetness proxy)."
+      },
+      {
+        "name": "elev_mean_m",
+        "label": "Absolute elevation",
+        "direction": "decrease",
+        "weight": 0.15,
+        "rationale": "Lower parts of the catchment are generally more flood-prone than ridges and plateaus."
+      },
+      {
+        "name": "slope_mean_deg",
+        "label": "Mean slope",
+        "direction": "decrease",
+        "weight": 0.2,
+        "rationale": "Flat terrain drains slowly and ponds water."
+      },
+      {
+        "name": "dist_waterway_m",
+        "label": "Distance to mapped waterway",
+        "direction": "decrease",
+        "weight": 0.2,
+        "rationale": "Proximity to rivers/streams/canals raises riverine overflow susceptibility. OSM omits many culverted nallahs."
+      },
+      {
+        "name": "builtup_share",
+        "label": "Built-up land-cover share",
+        "direction": "increase",
+        "weight": 0.2,
+        "rationale": "Built-up cover reduces infiltration (land-cover proxy only; not measured imperviousness)."
+      }
+    ],
+    "excluded_variables": [
+      {
+        "name": "flow_accumulation",
+        "reason": "Requires hydrologically conditioned DEM (pit filling, burn-in of channels); not implemented. Not substituted."
+      },
+      {
+        "name": "rainfall",
+        "reason": "Static screening index does not model rainfall-runoff; rainfall is shown as context only."
+      }
+    ],
+    "weights_status": "Expert-judgement priors from flood-susceptibility literature; NOT calibrated against observations. See sensitivity analysis."
+  },
+  "variables_used": [
+    "rel_elev_mean_m",
+    "elev_mean_m",
+    "slope_mean_deg",
+    "dist_waterway_m",
+    "builtup_share"
+  ],
+  "variables_skipped": [],
+  "category_edges": [
+    0.0,
+    55.98918904270477,
+    65.20451250710472,
+    70.5298695170281,
+    76.80302101319798,
+    88.93022082856965
+  ],
+  "n_scored": 2924,
+  "n_cells": 2924,
+  "input_datasets": [
+    "dem_cop_glo30",
+    "landcover_worldcover_2021",
+    "osm_pune"
+  ],
+  "feature_manifest": {
+    "elev_mean_m": {
+      "label": "Mean elevation",
+      "units": "m a.s.l. (EGM2008)",
+      "source_dataset": "dem_cop_glo30",
+      "method": "Mean of 30 m DSM pixels in cell",
+      "status": "available",
+      "reason": null,
+      "n_valid": 2924
+    },
+    "slope_mean_deg": {
+      "label": "Mean slope",
+      "units": "degrees",
+      "source_dataset": "dem_cop_glo30",
+      "method": "Mean of np.gradient slope on 30 m UTM DSM",
+      "status": "available",
+      "reason": null,
+      "n_valid": 2924
+    },
+    "rel_elev_mean_m": {
+      "label": "Relative elevation",
+      "units": "m",
+      "source_dataset": "dem_cop_glo30",
+      "method": "Pixel minus mean in 1 km square window, averaged over cell",
+      "status": "available",
+      "reason": null,
+      "n_valid": 2924
+    },
+    "builtup_share": {
+      "label": "Built-up land-cover share",
+      "units": "fraction 0-1",
+      "source_dataset": "landcover_worldcover_2021",
+      "method": "Share of 10 m pixels with class 50",
+      "status": "available",
+      "reason": null,
+      "n_valid": 2924
+    },
+    "vegetated_share": {
+      "label": "Vegetated land-cover share",
+      "units": "fraction 0-1",
+      "source_dataset": "landcover_worldcover_2021",
+      "method": "Share of tree/shrub/grass/crop/wetland/mangrove/moss pixels",
+      "status": "available",
+      "reason": null,
+      "n_valid": 2924
+    },
+    "population_sum": {
+      "label": "Population (WorldPop)",
+      "units": "people",
+      "source_dataset": "population_worldpop_2020",
+      "method": "Sum of pixel values with centre in cell; modelled, not census",
+      "status": "available",
+      "reason": null,
+      "n_valid": 2916
+    },
+    "dist_waterway_m": {
+      "label": "Distance to nearest mapped waterway",
+      "units": "m",
+      "source_dataset": "osm_pune",
+      "method": "Centroid-to-line distance in UTM; OSM waterway completeness unverified",
+      "status": "available",
+      "reason": null,
+      "n_valid": 2924
+    },
+    "road_length_m": {
+      "label": "Mapped road length",
+      "units": "m",
+      "source_dataset": "osm_pune",
+      "method": "Length of OSM road segments clipped to cell, in UTM",
+      "status": "available",
+      "reason": null,
+      "n_valid": 2924
+    },
+    "n_hospital": {
+      "label": "Hospitals (OSM)",
+      "units": "count",
+      "source_dataset": "osm_pune",
+      "method": "OSM amenity=hospital points in cell",
+      "status": "available",
+      "reason": null,
+      "n_valid": 2924
+    },
+    "n_clinic": {
+      "label": "Clinics (OSM)",
+      "units": "count",
+      "source_dataset": "osm_pune",
+      "method": "OSM amenity=clinic",
+      "status": "available",
+      "reason": null,
+      "n_valid": 2924
+    },
+    "n_school": {
+      "label": "Schools (OSM)",
+      "units": "count",
+      "source_dataset": "osm_pune",
+      "method": "OSM amenity=school",
+      "status": "available",
+      "reason": null,
+      "n_valid": 2924
+    },
+    "n_fire_station": {
+      "label": "Fire stations (OSM)",
+      "units": "count",
+      "source_dataset": "osm_pune",
+      "method": "OSM amenity=fire_station",
+      "status": "available",
+      "reason": null,
+      "n_valid": 2924
+    },
+    "n_police": {
+      "label": "Police stations (OSM)",
+      "units": "count",
+      "source_dataset": "osm_pune",
+      "method": "OSM amenity=police",
+      "status": "available",
+      "reason": null,
+      "n_valid": 2924
+    },
+    "flow_accumulation": {
+      "label": "Flow accumulation",
+      "units": "cells",
+      "source_dataset": "dem_cop_glo30",
+      "method": "NOT COMPUTED: requires hydrological conditioning",
+      "status": "unavailable",
+      "reason": "not implemented (needs pit-filled DEM and validated channel network)",
+      "n_valid": 0
+    }
+  },
+  "limitations": [
+    "Relative screening score, not a flood probability, hazard, depth or inundation extent",
+    "Weights are expert-judgement priors, not calibrated against observed floods",
+    "Elevation is a surface model (buildings/canopy included) at 30 m",
+    "Waterway layer from OSM omits many culverted channels",
+    "Scores comparable only within this run (percentile-normalised)"
+  ],
+  "mean_contribution": {
+    "rel_elev_mean_m": 14.397308777975352,
+    "elev_mean_m": 12.210211329149237,
+    "slope_mean_deg": 16.337765082700095,
+    "dist_waterway_m": 13.605735891747226,
+    "builtup_share": 8.160484742519118
+  },
+  "mean_contribution_note": "Averaged over all scored cells; an absent input contributes 0 to that cell's sum, so contributions sum exactly to the mean score."
+}
